@@ -9,3 +9,11 @@ enum OsType {
   macos,
   unknown,
 }
+
+enum Status {
+  pending,
+  processing,
+  shipped,
+  delivered,
+  cancelled,
+}
