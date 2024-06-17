@@ -12,6 +12,6 @@ class ProductImages with _$ProductImages{
     required String imageUrl,
 }) = _ProductImage;
 
-  factory ProductImages.fromJson(Map<String, dynamic>json)=>
-      _$ProductImageFromJson(json);
+  factory ProductImages.fromJson(Map<String, dynamic>json) =>
+      _$ProductImagesFromJson(json);
 }

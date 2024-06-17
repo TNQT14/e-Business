@@ -3,9 +3,12 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  connectivity_plus_windows
   firebase_auth
   firebase_core
+  network_info_plus_windows
   permission_handler_windows
+  rive_common
   url_launcher_windows
 )
 

@@ -17,5 +17,5 @@ class OrderDetails with _$OrderDetails{
   }) = _OrderDetails;
 
   factory OrderDetails.fromJson(Map<String, dynamic> json) =>
-      _$OrderDetails(json);
+      _$OrderDetailsFromJson(json);
 }
