@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     : Image.asset('assets/images/placeholder.png'),
               ),
               Text(
-                FirebaseAuth.instance.currentUser!.displayName!,
+                FirebaseAuth.instance.currentUser!.displayName?? 'Test',
                 style: AppStyles.font15DarkBlue500Weight
                     .copyWith(fontSize: 30.sp),
               ),

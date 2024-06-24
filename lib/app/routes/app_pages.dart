@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../logic/cubit/auth_cubit.dart';
 import '../screens/home/ui/home_screen.dart';
 import '../screens/login/ui/login_screen.dart';
+import '../screens/sign_up/views/sign_up_sceen.dart';
 import 'app_routes.dart';
 
 class AppPages{
@@ -45,14 +46,14 @@ class AppPages{
       //     );
       //   }
       //
-      // case AppRoutes.signupScreen:
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider.value(
-      //       value: authCubit,
-      //       child: const SignUpScreen(),
-      //     ),
-      //   );
-      //
+      case AppRoutes.signupScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: authCubit,
+            child: const SignUpScreen(),
+          ),
+        );
+
       case AppRoutes.loginScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
