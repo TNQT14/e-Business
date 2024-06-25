@@ -1,14 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../core/values/enums.dart';
-
 part 'orders.g.dart';
 part 'orders.freezed.dart';
 
 @freezed
-
 class Orders with _$Orders{
-
   factory Orders({
     required int id,
     required int userId,
@@ -29,6 +25,6 @@ class Orders with _$Orders{
     @Default(0)int couponId,
 }) = _Orders;
 
-  factory Orders.fromJson(Map<String, dynamic> json)=>
-      _$OrderFromJson(json);
+  factory Orders.fromJson(Map<String, dynamic> json) =>
+      _$OrdersFromJson(json);
 }

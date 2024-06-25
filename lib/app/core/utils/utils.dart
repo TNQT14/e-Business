@@ -55,7 +55,7 @@ class Utils {
   static RichText getRequiredLabel(String fieldName) {
     return RichText(
       text: TextSpan(
-        style: AppStyle.txt12Bold.copyWith(
+        style: AppStyles.txt12Bold.copyWith(
           color: const Color(0xff7B8B9D),
         ),
         text: fieldName,
