@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../logic/cubit/auth_cubit.dart';
+import '../screens/forget_password/views/forget_screen.dart';
 import '../screens/home/ui/home_screen.dart';
 import '../screens/login/ui/login_screen.dart';
 import '../screens/sign_up/views/sign_up_sceen.dart';
@@ -16,13 +17,13 @@ class AppPages{
 
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // case AppRoutes.forgetScreen:
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider.value(
-      //       value: authCubit,
-      //       child: const ForgetScreen(),
-      //     ),
-      //   );
+      case AppRoutes.forgetScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: authCubit,
+            child: const ForgetScreen(),
+          ),
+        );
 
       case AppRoutes.homeScreen:
         return MaterialPageRoute(

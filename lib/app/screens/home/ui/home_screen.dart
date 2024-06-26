@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 200.h,
                 width: 200.w,
-                child: FirebaseAuth.instance.currentUser!.photoURL != null
+                child: FirebaseAuth.instance.currentUser?.photoURL != null
                     ? CachedNetworkImage(
                   imageUrl: FirebaseAuth.instance.currentUser!.photoURL!,
                   placeholder: (context, url) =>
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     : Image.asset('assets/images/placeholder.png'),
               ),
               Text(
-                FirebaseAuth.instance.currentUser!.displayName?? 'Test',
+                FirebaseAuth.instance.currentUser?.displayName?? 'Test',
                 style: AppStyles.font15DarkBlue500Weight
                     .copyWith(fontSize: 30.sp),
               ),
