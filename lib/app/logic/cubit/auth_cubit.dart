@@ -107,16 +107,22 @@ class AuthCubit extends Cubit<AuthState> {
       String name, String email, String password) async {
     emit(AuthLoading());
     try {
-      await _auth.createUserWithEmailAndPassword(
+      UserCredential userCredential =  await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       await _auth.currentUser!.updateDisplayName(name);
       await _auth.currentUser!.sendEmailVerification();
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
       await _fireStore.collection('Users').doc(userCredential.user!.uid).set({
         'userID': userCredential.user!.uid,
+        'fullName': name,
         'email': email,
-      });
+        'phoneNumber': '',
+        'address': '',
+        'isActive': '',
+        'DoB': '',
+        'facebookAcountId': '',
+        'googleAccountId': '',
+        'roleId': '',
+      }, SetOptions(merge: true));
       await _auth.signOut();
       emit(UserSingupButNotVerified());
     } catch (e) {
