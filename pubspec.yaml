@@ -64,6 +64,7 @@ dependencies:
   gap: ^3.0.1
   connectivity_plus: ^2.3.8
   cloud_firestore: ^5.0.2
+  flutter_snake_navigationbar: ^0.6.1
 
 dev_dependencies:
   flutter_test:
@@ -95,6 +96,7 @@ flutter:
     - assets/animation/
     - assets/images/
     - assets/svgs/
+    - assets/navbar_icons/
 
   fonts:
     - family: Quicksand

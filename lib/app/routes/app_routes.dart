@@ -6,6 +6,7 @@ abstract class AppRoutes{
   static const String signupScreen = _Paths.signupScreen;
   static const String createPassword = _Paths.createPassword;
   static const String homeScreen = _Paths.homeScreen;
+  static const String mainView = _Paths.mainView;
 }
 
 abstract class _Paths{
@@ -14,4 +15,5 @@ abstract class _Paths{
   static const String signupScreen = "/signupScreen";
   static const String createPassword = "/createPassword";
   static const String homeScreen = "/homeScreen";
+  static const String mainView = "/";
 }
