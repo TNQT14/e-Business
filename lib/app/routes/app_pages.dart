@@ -1,3 +1,4 @@
+import 'package:ebusiness/app/screens/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,6 +33,13 @@ class AppPages{
             child: const HomeScreen(),
           ),
         );
+      case AppRoutes.mainView:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: authCubit,
+            child: MainView(),
+          ),
+        );
       //
       // case AppRoutes.createPassword:
       //   final arguments = settings.arguments;
@@ -62,6 +70,8 @@ class AppPages{
             child: const LoginScreen(),
           ),
         );
+
+
     }
     return null;
   }

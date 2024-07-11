@@ -2,9 +2,11 @@ import 'package:ebusiness/app/routes/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'app/routes/app_pages.dart';
+import 'app/screens/home/blocs/navbar_dart_cubit.dart';
 import 'app/theme/app_colors.dart';
 import 'firebase_options.dart';
 
@@ -36,7 +38,7 @@ Future<void> main() async {
       if (user == null || !user.emailVerified) {
         initialRoute = AppRoutes.loginScreen;
       } else {
-        initialRoute = AppRoutes.homeScreen;
+        initialRoute = AppRoutes.mainView;
       }
     },
   );
@@ -51,26 +53,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (_, child) {
-        return MaterialApp(
-          title: 'Login & Signup App',
-          theme: ThemeData(
-            useMaterial3: true,
-            textSelectionTheme: const TextSelectionThemeData(
-              cursorColor: ColorsManager.mainBlue,
-              selectionColor: Color.fromARGB(188, 36, 124, 255),
-              selectionHandleColor: ColorsManager.mainBlue,
+    return MultiBlocProvider(
+      providers:[
+        BlocProvider(
+          create: (context) => NavbarCubit(),
+        ),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'Login & Signup App',
+            theme: ThemeData(
+              useMaterial3: true,
+              textSelectionTheme: const TextSelectionThemeData(
+                cursorColor: ColorsManager.mainBlue,
+                selectionColor: Color.fromARGB(188, 36, 124, 255),
+                selectionHandleColor: ColorsManager.mainBlue,
+              ),
             ),
-          ),
-          onGenerateRoute: router.generateRoute,
-          debugShowCheckedModeBanner: false,
-          initialRoute: initialRoute,
-        );
-      },
+            onGenerateRoute: router.generateRoute,
+            debugShowCheckedModeBanner: false,
+            initialRoute: initialRoute,
+          );
+        },
+      ),
     );
   }
 }
