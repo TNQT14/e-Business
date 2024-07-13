@@ -114,44 +114,6 @@ class Utils {
     }
   }
 
-
-  static String getIconPathTranstype({String? transtype}) {
-    switch (transtype) {
-      case "REFUND":
-        return ImageAssets.icDepositGStar;
-      case "TRANSFER":
-      case "GIVEGSTAR":
-      case "TRANSFER_MONEY":
-        return ImageAssets.icTransferMoneyGstar;
-      case "EXCHANGE":
-        return ImageAssets.iconTransfer;
-      case "TOPUP":
-        return ImageAssets.iconNaptiendienthoai;
-      case "TOPUP_DATA":
-        return ImageAssets.iconNaptiendata;
-      case 'PIN_CODE':
-        return ImageAssets.iconCardPhone;
-      case "PIN_DATA":
-        return ImageAssets.iconNaptiendata;
-      case "PIN_GATE":
-        return ImageAssets.iconCardGame;
-      case "PIN_GAME":
-        return ImageAssets.iconCardGame;
-      case "FSTAR":
-      case "BUYGSTAR":
-        return ImageAssets.iconLogo;
-      // return ImageAssets.icFstarHistory;
-      case "RECEIVE_GIVEGSTAR":
-      case "RECEIVE_MONEY":
-        return ImageAssets.icGiveGstar;
-      case "GSTAR":
-      case "DEPOSIT":
-        return ImageAssets.icExchangeGstar;
-      default:
-        return ImageAssets.iconLogo;
-    }
-  }
-
   static bool isCategory(String? serviceCode) {
     switch (serviceCode) {
       case "EVN_BILL":
