@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import '../../core/error/failures.dart';
 import '../../core/network/network_info.dart';
+import '../../domain/entities/user/user.dart';
 import '../../domain/repositories/user_repository.dart';
 import '../../domain/use_case/usecase.dart';
-import '../../model/user_model.dart';
 import '../data_sources/local/user_local_data_source.dart';
 import '../data_sources/remote/user_remote_data_source.dart';
 import '../models/user/authentication_response_model.dart';

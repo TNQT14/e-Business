@@ -1,13 +1,14 @@
 import 'package:dartz/dartz.dart';
 import '../../core/error/failures.dart';
 import '../../core/network/network_info.dart';
+import '../../domain/entities/order/order_details.dart';
 import '../../domain/repositories/order_repository.dart';
 import '../../domain/use_case/usecase.dart';
-import '../../model/order_details.dart';
 import '../data_sources/local/order_local_data_source.dart';
 import '../data_sources/local/user_local_data_source.dart';
 import '../data_sources/remote/order_remote_data_source.dart';
 import '../models/order/order_details_model.dart';
+
 
 class OrderRepositoryImpl implements OrderRepository {
   final OrderRemoteDataSource remoteDataSource;
@@ -30,7 +31,7 @@ class OrderRepositoryImpl implements OrderRepository {
         OrderDetailsModel.fromEntity(params),
         token,
       );
-      return Right(remoteProduct as OrderDetails);
+      return Right(remoteProduct);
     } else {
       return Left(NetworkFailure());
     }
@@ -46,7 +47,7 @@ class OrderRepositoryImpl implements OrderRepository {
             token,
           );
           await localDataSource.saveOrders(remoteProduct);
-          return Right(remoteProduct.cast<OrderDetails>());
+          return Right(remoteProduct);
         } on Failure catch (failure) {
           return Left(failure);
         }
@@ -62,7 +63,7 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<Either<Failure, List<OrderDetails>>> getCachedOrders() async {
     try {
       final localOrders = await localDataSource.getOrders();
-      return Right(localOrders.cast<OrderDetails>());
+      return Right(localOrders);
     } on Failure catch (failure) {
       return Left(failure);
     }

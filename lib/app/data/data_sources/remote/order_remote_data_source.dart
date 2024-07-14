@@ -1,8 +1,7 @@
-import 'package:eshop/core/error/failures.dart';
 import 'package:http/http.dart' as http;
-
-import '../../../../core/error/exceptions.dart';
-import '../../../core/constant/strings.dart';
+import '../../../core/error/exceptions.dart';
+import '../../../core/error/failures.dart';
+import '../../../core/utils/strings.dart';
 import '../../models/order/order_details_model.dart';
 
 abstract class OrderRemoteDataSource {

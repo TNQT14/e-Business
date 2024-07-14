@@ -1,7 +1,6 @@
-import 'package:eshop/core/error/failures.dart';
 import 'package:http/http.dart' as http;
-
-import '../../../core/constant/strings.dart';
+import '../../../core/error/failures.dart';
+import '../../../core/utils/strings.dart';
 import '../../models/category/category_model.dart';
 
 abstract class CategoryRemoteDataSource {

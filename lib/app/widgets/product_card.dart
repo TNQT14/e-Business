@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../model/product.dart';
+import '../domain/entities/product/product.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProductCard extends StatelessWidget {
@@ -123,7 +123,7 @@ class ProductCard extends StatelessWidget {
                           ),
                         )
                       : Text(
-                          r'$' + product!.price.toString(),
+                          r'$' + product!.priceTags.toString(),
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

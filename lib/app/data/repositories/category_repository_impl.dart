@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:eshop/domain/entities/category/category.dart';
-
-import '../../../../core/error/failures.dart';
-import '../../../../core/error/exceptions.dart';
+import '../../core/error/exceptions.dart';
+import '../../core/error/failures.dart';
 import '../../core/network/network_info.dart';
+import '../../domain/entities/category/category.dart';
 import '../../domain/repositories/category_repository.dart';
 import '../data_sources/local/category_local_data_source.dart';
 import '../data_sources/remote/category_remote_data_source.dart';
@@ -52,7 +51,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
       final categories = cachedCategories;
       final filteredCategories = categories
           .where((element) =>
-              element.name.toLowerCase().contains(params.toLowerCase()))
+          element.name.toLowerCase().contains(params.toLowerCase()))
           .toList();
       return Right(filteredCategories);
     } on CacheException {

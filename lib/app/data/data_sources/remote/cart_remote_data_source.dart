@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
-import '../../../../core/error/exceptions.dart';
-import '../../../core/constant/strings.dart';
+import '../../../core/error/exceptions.dart';
+import '../../../core/utils/strings.dart';
 import '../../models/cart/cart_item_model.dart';
 
 abstract class CartRemoteDataSource {

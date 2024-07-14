@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
 import '../../core/error/failures.dart';
-import '../../domain/entities/pagination_meta_data.dart';
-import '../../domain/use_case/get_product_usecase.dart';
-import '../../model/product.dart';
+import '../../domain/entities/product/pagination_meta_data.dart';
+import '../../domain/entities/product/product.dart';
+import '../../domain/use_case/product/get_product_usecase.dart';
 
 part 'product_event.dart';
 part 'product_state.dart';
@@ -81,7 +82,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           )),
           (productResponse) {
             List<Product> products = state.products;
-            products.addAll(productResponse.products);
+            products.addAll(productResponse?.products as Iterable<Product>);
             emit(ProductLoaded(
               metaData: state.metaData,
               products: products,

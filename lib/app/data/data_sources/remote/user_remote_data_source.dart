@@ -1,12 +1,10 @@
 import 'dart:convert';
-
-import 'package:eshop/core/error/failures.dart';
 import 'package:http/http.dart' as http;
-
-import '../../../../core/error/exceptions.dart';
-import '../../../core/constant/strings.dart';
-import '../../../domain/usecases/user/sign_in_usecase.dart';
-import '../../../domain/usecases/user/sign_up_usecase.dart';
+import '../../../core/error/exceptions.dart';
+import '../../../core/error/failures.dart';
+import '../../../core/utils/strings.dart';
+import '../../../domain/use_case/user/sign_in_usecase.dart';
+import '../../../domain/use_case/user/sign_up_usecase.dart';
 import '../../models/user/authentication_response_model.dart';
 
 abstract class UserRemoteDataSource {

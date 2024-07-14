@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../../core/error/exceptions.dart';
 import '../../../core/utils/strings.dart';
-import '../../../domain/use_case/get_product_usecase.dart';
+import '../../../domain/use_case/product/get_product_usecase.dart';
 import '../../models/product/product_response_model.dart';
 
 abstract class ProductRemoteDataSource {

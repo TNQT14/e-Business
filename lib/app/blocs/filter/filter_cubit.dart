@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 
-import '../../domain/use_case/get_product_usecase.dart';
+import '../../domain/entities/category/category.dart';
+import '../../domain/use_case/product/get_product_usecase.dart';
+// import '../../domain/use_case/product/get_product_usecase.dart';
+
 class FilterCubit extends Cubit<FilterProductParams> {
   final TextEditingController searchController = TextEditingController();
   FilterCubit() : super(const FilterProductParams());
@@ -18,7 +21,7 @@ class FilterCubit extends Cubit<FilterProductParams> {
     } else if (categories != null) {
       updatedCategories.addAll(categories);
     } else {
-      updatedCategories.addAll(state.categories);
+      updatedCategories.addAll(state.categories as Iterable<Category>);
     }
     emit(FilterProductParams(
       keyword: keyword ?? state.keyword,
@@ -30,7 +33,7 @@ class FilterCubit extends Cubit<FilterProductParams> {
     required Category category,
   }) {
     List<Category> updatedCategories = [];
-    updatedCategories.addAll(state.categories);
+    updatedCategories.addAll(state.categories as Iterable<Category>);
     if (updatedCategories.contains(category)) {
       updatedCategories.remove(category);
     } else {

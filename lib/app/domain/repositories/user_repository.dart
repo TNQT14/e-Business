@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../core/error/failures.dart';
-import '../../model/user_model.dart';
+import '../entities/user/user.dart';
 import '../use_case/usecase.dart';
 import '../use_case/user/sign_in_usecase.dart';
 import '../use_case/user/sign_up_usecase.dart';

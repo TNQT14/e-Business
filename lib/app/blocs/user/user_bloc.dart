@@ -5,12 +5,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../core/error/failures.dart';
+import '../../domain/entities/user/user.dart';
 import '../../domain/use_case/usecase.dart';
 import '../../domain/use_case/user/get_cached_user_usecase.dart';
 import '../../domain/use_case/user/sign_in_usecase.dart';
 import '../../domain/use_case/user/sign_out_usecase.dart';
 import '../../domain/use_case/user/sign_up_usecase.dart';
-import '../../model/user_model.dart';
 
 
 part 'user_event.dart';

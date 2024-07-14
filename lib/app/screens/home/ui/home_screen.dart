@@ -9,7 +9,7 @@ import '../../../blocs/filter/filter_cubit.dart';
 import '../../../blocs/product/product_bloc.dart';
 import '../../../blocs/user/user_bloc.dart';
 import '../../../core/error/failures.dart';
-import '../../../domain/use_case/get_product_usecase.dart';
+import '../../../domain/use_case/product/get_product_usecase.dart';
 import '../../../logic/cubit/auth_cubit.dart';
 import '../../../routes/app_routes.dart';
 import '../../../theme/app_colors.dart';

@@ -11,7 +11,8 @@ import 'app/routes/app_pages.dart';
 import 'app/screens/home/blocs/navbar_dart_cubit.dart';
 import 'app/theme/app_colors.dart';
 import 'firebase_options.dart';
-import 'core/services/services_locator.dart' as di;
+import 'app/core/services/services_locator.dart' as di;
+// import 'core/services/services_locator.dart' as di;
 
 late String initialRoute;
 
