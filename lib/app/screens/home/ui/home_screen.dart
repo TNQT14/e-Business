@@ -281,29 +281,32 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                           );
                         }
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (state.failure is ServerFailure)
-                              Image.asset(
-                                  'assets/status_image/internal-server-error.png'),
-                            if (state.failure is CacheFailure)
-                              Image.asset('assets/status_image/no-connection.png'),
-                            const Text("Products not found!"),
-                            IconButton(
-                                onPressed: () {
-                                  context.read<ProductBloc>().add(GetProducts(
-                                      FilterProductParams(
-                                          keyword: context
-                                              .read<FilterCubit>()
-                                              .searchController
-                                              .text)));
-                                },
-                                icon: const Icon(Icons.refresh)),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.1,
-                            )
-                          ],
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              if (state.failure is ServerFailure)
+                                Image.asset(
+                                    'assets/status_image/internal-server-error.png'),
+                              if (state.failure is CacheFailure)
+                                Image.asset('assets/status_image/no-connection.png'),
+                              const Text("Products not found!"),
+                              IconButton(
+                                  onPressed: () {
+                                    context.read<ProductBloc>().add(GetProducts(
+                                        FilterProductParams(
+                                            keyword: context
+                                                .read<FilterCubit>()
+                                                .searchController
+                                                .text)));
+                                  },
+                                  icon: const Icon(Icons.refresh)),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.1,
+                              )
+                            ],
+                          ),
                         );
                       }
                       return RefreshIndicator(
