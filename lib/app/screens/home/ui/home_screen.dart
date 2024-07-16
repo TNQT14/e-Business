@@ -130,12 +130,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 8,
                         ),
                         Text(
-                          "Welcome,",
+                          "EUPHORIA,",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 36),
                         ),
                         Text(
-                          "E-Shop mobile store",
+                          "Xin chào quý khách",
                           style: TextStyle(
                               fontWeight: FontWeight.normal, fontSize: 22),
                         ),
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushNamed(AppRoutes.loginScreen);
+                        // Navigator.of(context).pushNamed(AppRoutes.loginScreen);
                       },
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),
