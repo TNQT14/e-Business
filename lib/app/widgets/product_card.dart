@@ -77,17 +77,17 @@ class ProductCard extends StatelessWidget {
                     tag: product!.id,
                     child: Padding(
                       padding: const EdgeInsets.all(32.0),
-                      child: Container()
-                      // CachedNetworkImage(
-                      //   imageUrl: product!.images.first,
-                      //   placeholder: (context, url) => Shimmer.fromColors(
-                      //     baseColor: Colors.grey.shade100,
-                      //     highlightColor: Colors.white,
-                      //     child: Container(),
-                      //   ),
-                      //   errorWidget: (context, url, error) =>
-                      //       const Center(child: Icon(Icons.error)),
-                      // ),
+                      child:
+                      CachedNetworkImage(
+                        imageUrl: product!.images.first,
+                        placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.grey.shade100,
+                          highlightColor: Colors.white,
+                          child: Container(),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Center(child: Icon(Icons.error)),
+                      ),
                     ),
                   ),
           )),
@@ -113,7 +113,7 @@ class ProductCard extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(
-                  height: 18,
+                  height: 20,
                   child: product == null
                       ? Container(
                           width: 100,
@@ -123,7 +123,7 @@ class ProductCard extends StatelessWidget {
                           ),
                         )
                       : Text(
-                          r'$' + product!.priceTags.toString(),
+                          r'₫' + product!.priceTags.toString(),
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

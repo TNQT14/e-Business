@@ -291,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     'assets/status_image/internal-server-error.png'),
                               if (state.failure is CacheFailure)
                                 Image.asset('assets/status_image/no-connection.png'),
-                              const Text("Products not found!"),
+                              Text("Products not found!"),
                               IconButton(
                                   onPressed: () {
                                     context.read<ProductBloc>().add(GetProducts(

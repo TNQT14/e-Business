@@ -1,1 +1,1 @@
-const String baseUrl = 'sfhsdfhgsfh';
+const String baseUrl = 'https://shopapp-angular-java-production-738c.up.railway.app/api/v1';

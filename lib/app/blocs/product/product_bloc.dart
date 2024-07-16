@@ -17,9 +17,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
             products: const [],
             params: const FilterProductParams(),
             metaData: PaginationMetaData(
-              pageSize: 20,
-              limit: 0,
-              total: 0,
+              totalPages: 4,
             ))) {
     on<GetProducts>(_onLoadProducts);
     on<GetMoreProducts>(_onLoadMoreProducts);
@@ -33,6 +31,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         params: event.params,
       ));
       final result = await _getProductUseCase(event.params);
+      print('result: ${result}');
       result.fold(
         (failure) => emit(ProductError(
           products: state.products,
@@ -59,8 +58,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   void _onLoadMoreProducts(
       GetMoreProducts event, Emitter<ProductState> emit) async {
     var state = this.state;
-    var limit = state.metaData.limit;
-    var total = state.metaData.total;
+    // var limit = state.metaData.limit;
+    var total = state.metaData.totalPages;
     var loadedProductsLength = state.products.length;
     // check state and loaded products amount[loadedProductsLength] compare with
     // number of results total[total] results available in server
@@ -72,7 +71,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           params: state.params,
         ));
         final result =
-            await _getProductUseCase(FilterProductParams(limit: limit + 10));
+            await _getProductUseCase(FilterProductParams(limit: 10));
         result.fold(
           (failure) => emit(ProductError(
             products: state.products,
@@ -82,7 +81,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           )),
           (productResponse) {
             List<Product> products = state.products;
-            products.addAll(productResponse?.products as Iterable<Product>);
+            products.addAll(productResponse.products);
             emit(ProductLoaded(
               metaData: state.metaData,
               products: products,

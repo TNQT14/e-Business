@@ -15,18 +15,29 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<ProductResponseModel> getProducts(params) => _getProductFromUrl(
-      '$baseUrl/products?keyword=${params.keyword}&pageSize=${params.pageSize}&page=${params.limit}&categories=${jsonEncode(params.categories.map((e) => e.id).toList())}');
+      '$baseUrl/products');
 
   Future<ProductResponseModel> _getProductFromUrl(String url) async {
-    final response = await client.get(
-      Uri.parse(url),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    );
+    print('test api 1');
+    dynamic response;
+    try{
+      response = await client.get(
+        Uri.parse(url),
+      );
+      // print('Test ${response.body}');
+      print('Test 1: ${json.encode(json.decode(utf8.decode(response.bodyBytes))["products"])}');
+      print('Test 2 ${productResponseModelFromJson(response.body)}');
+    } catch(e){
+      // print('Error ${productResponseModelFromJson(response.body)}');
+      print('Error: ${e.toString()}');
+    }
+    print('Test ${productResponseModelFromJson(response.body)}');
     if (response.statusCode == 200) {
+      print('Test 200 ${productResponseModelFromJson(response.body)}');
       return productResponseModelFromJson(response.body);
-    } else {
+    }
+    else {
+      print('Error here');
       throw ServerException();
     }
   }

@@ -35,11 +35,15 @@ class ProductRepositoryImpl implements ProductRepository {
     if (await networkInfo.isConnected) {
       try {
         final remoteProducts = await getConcreteOrProducts();
-        localDataSource.saveProducts(remoteProducts as ProductResponseModel);
+        // localDataSource.saveProducts(remoteProducts as ProductResponseModel);
         return Right(remoteProducts);
-      } on ServerException {
+      } catch (e){
+        print('Lỗi: $e');
         return Left(ServerFailure());
       }
+      // on ServerException {
+      //   return Left(ServerFailure());
+      // }
     } else {
       try {
         final localProducts = await localDataSource.getLastProducts();

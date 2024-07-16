@@ -6,7 +6,8 @@ import 'product_model.dart';
 import 'dart:convert';
 
 ProductResponseModel productResponseModelFromJson(String str) =>
-    ProductResponseModel.fromJson(json.decode(str));
+    ProductResponseModel.fromJson(json.decode(utf8.decode(str.codeUnits)));
+
 
 String productResponseModelToJson(ProductResponseModel data) =>
     json.encode(data.toJson());
@@ -17,15 +18,15 @@ class ProductResponseModel extends ProductResponse {
     required List<Product> data,
   }) : super(products: data, paginationMetaData: meta);
 
-  factory ProductResponseModel.fromJson(Map<String, dynamic> json) =>
-      ProductResponseModel(
-        meta: PaginationMetaDataModel.fromJson(json["meta"]),
-        data: List<ProductModel>.from(
-            json["data"].map((x) => ProductModel.fromJson(x))),
-      );
+  factory ProductResponseModel.fromJson(Map<String, dynamic> json) => ProductResponseModel(
+      meta: PaginationMetaDataModel.fromJson(json),
+      data: List<ProductModel>.from(
+          json["products"].map((x) => ProductModel.fromJson(x))),
+    );
+
 
   Map<String, dynamic> toJson() => {
-        "meta": (paginationMetaData as PaginationMetaDataModel).toJson(),
-        "data": List<dynamic>.from((products as List<ProductModel>).map((x) => x.toJson())),
+        "totalPages": (paginationMetaData as PaginationMetaDataModel).toJson(),
+        "products": List<dynamic>.from((products as List<ProductModel>).map((x) => x.toJson())),
       };
 }
