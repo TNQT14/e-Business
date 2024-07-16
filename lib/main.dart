@@ -5,10 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'app/blocs/filter/filter_cubit.dart';
+import 'app/blocs/product/product_bloc.dart';
+import 'app/blocs/user/user_bloc.dart';
+import 'app/domain/use_case/product/get_product_usecase.dart';
 import 'app/routes/app_pages.dart';
 import 'app/screens/home/blocs/navbar_dart_cubit.dart';
 import 'app/theme/app_colors.dart';
 import 'firebase_options.dart';
+import 'app/core/services/services_locator.dart' as di;
+// import 'core/services/services_locator.dart' as di;
 
 late String initialRoute;
 
@@ -25,6 +31,7 @@ Future<void> preloadSVGs(List<String> paths) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   await Future.wait([
     Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -57,6 +64,19 @@ class MyApp extends StatelessWidget {
       providers:[
         BlocProvider(
           create: (context) => NavbarCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FilterCubit(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<ProductBloc>()
+            ..add(const GetProducts(FilterProductParams())),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<UserBloc>()..add(CheckUser()),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<UserBloc>()..add(CheckUser()),
         ),
       ],
       child: ScreenUtilInit(
