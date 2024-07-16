@@ -106,6 +106,7 @@ flutter:
     - assets/navbar_icons/
     - assets/other_images/
     - assets/status_image/
+    - assets/icons/
 
   fonts:
     - family: Quicksand
