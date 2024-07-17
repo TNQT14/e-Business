@@ -50,6 +50,28 @@ dependencies:
   google_mlkit_commons: ^0.7.1
   convert_native_img_stream: ^0.0.1
   encrypt: ^5.0.3
+  firebase_auth: ^5.0.0
+  firebase_core: ^3.1.0
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+  flutter_screenutil: ^5.9.3
+  flutter_bloc: ^8.1.6
+  google_sign_in: ^6.2.1
+  flutter_svg: ^2.0.10+1
+  flutter_offline: ^2.1.0
+  cached_network_image: ^3.3.1
+  awesome_dialog: ^3.2.1
+  gap: ^3.0.1
+  connectivity_plus: ^2.3.8
+  cloud_firestore: ^5.0.2
+  flutter_snake_navigationbar: ^0.6.1
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  shimmer: ^3.0.0
+  get_it: ^7.7.0
+  internet_connection_checker: ^1.0.0+1
+  shared_preferences: ^2.2.3
+  flutter_secure_storage: ^9.2.2
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +83,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  build_runner: ^2.4.11
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,7 +100,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets
+    - assets/animation/
+    - assets/images/
+    - assets/svgs/
+    - assets/navbar_icons/
+    - assets/other_images/
+    - assets/status_image/
+    - assets/icons/
 
   fonts:
     - family: Quicksand

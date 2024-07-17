@@ -55,7 +55,7 @@ class Utils {
   static RichText getRequiredLabel(String fieldName) {
     return RichText(
       text: TextSpan(
-        style: AppStyle.txt12Bold.copyWith(
+        style: AppStyles.txt12Bold.copyWith(
           color: const Color(0xff7B8B9D),
         ),
         text: fieldName,
@@ -111,44 +111,6 @@ class Utils {
       return "Hôm qua";
     } else {
       return DateFormat('dd/MM/yyyy', 'vi_VN').format(date);
-    }
-  }
-
-
-  static String getIconPathTranstype({String? transtype}) {
-    switch (transtype) {
-      case "REFUND":
-        return ImageAssets.icDepositGStar;
-      case "TRANSFER":
-      case "GIVEGSTAR":
-      case "TRANSFER_MONEY":
-        return ImageAssets.icTransferMoneyGstar;
-      case "EXCHANGE":
-        return ImageAssets.iconTransfer;
-      case "TOPUP":
-        return ImageAssets.iconNaptiendienthoai;
-      case "TOPUP_DATA":
-        return ImageAssets.iconNaptiendata;
-      case 'PIN_CODE':
-        return ImageAssets.iconCardPhone;
-      case "PIN_DATA":
-        return ImageAssets.iconNaptiendata;
-      case "PIN_GATE":
-        return ImageAssets.iconCardGame;
-      case "PIN_GAME":
-        return ImageAssets.iconCardGame;
-      case "FSTAR":
-      case "BUYGSTAR":
-        return ImageAssets.iconLogo;
-      // return ImageAssets.icFstarHistory;
-      case "RECEIVE_GIVEGSTAR":
-      case "RECEIVE_MONEY":
-        return ImageAssets.icGiveGstar;
-      case "GSTAR":
-      case "DEPOSIT":
-        return ImageAssets.icExchangeGstar;
-      default:
-        return ImageAssets.iconLogo;
     }
   }
 

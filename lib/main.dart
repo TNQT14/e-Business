@@ -1,125 +1,105 @@
+import 'package:ebusiness/app/routes/app_routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'app/blocs/filter/filter_cubit.dart';
+import 'app/blocs/product/product_bloc.dart';
+import 'app/blocs/user/user_bloc.dart';
+import 'app/domain/use_case/product/get_product_usecase.dart';
+import 'app/routes/app_pages.dart';
+import 'app/screens/home/blocs/navbar_dart_cubit.dart';
+import 'app/theme/app_colors.dart';
+import 'firebase_options.dart';
+import 'app/core/services/services_locator.dart' as di;
+// import 'core/services/services_locator.dart' as di;
 
-void main() {
-  runApp(const MyApp());
-}
+late String initialRoute;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+Future<void> preloadSVGs(List<String> paths) async {
+  for (final path in paths) {
+    final loader = SvgAssetLoader(path);
+    await svg.cache.putIfAbsent(
+      loader.cacheKey(null),
+          () => loader.loadBytes(null),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  await Future.wait([
+    Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    ),
+    ScreenUtil.ensureScreenSize(),
+    preloadSVGs(['assets/svgs/google_logo.svg'])
+  ]);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+  FirebaseAuth.instance.authStateChanges().listen(
+        (user) {
+      if (user == null || !user.emailVerified) {
+        initialRoute = AppRoutes.loginScreen;
+      } else {
+        initialRoute = AppRoutes.mainView;
+      }
+    },
+  );
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  runApp(MyApp(router: AppPages()));
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class MyApp extends StatelessWidget {
+  final AppPages router;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  const MyApp({super.key, required this.router});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return MultiBlocProvider(
+      providers:[
+        BlocProvider(
+          create: (context) => NavbarCubit(),
         ),
+        BlocProvider(
+          create: (context) => FilterCubit(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<ProductBloc>()
+            ..add(const GetProducts(FilterProductParams())),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<UserBloc>()..add(CheckUser()),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<UserBloc>()..add(CheckUser()),
+        ),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'Login & Signup App',
+            theme: ThemeData(
+              useMaterial3: true,
+              textSelectionTheme: const TextSelectionThemeData(
+                cursorColor: ColorsManager.mainBlue,
+                selectionColor: Color.fromARGB(188, 36, 124, 255),
+                selectionHandleColor: ColorsManager.mainBlue,
+              ),
+            ),
+            onGenerateRoute: router.generateRoute,
+            debugShowCheckedModeBanner: false,
+            initialRoute: initialRoute,
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
