@@ -323,11 +323,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               top: 18,
                               left: 20,
                               right: 20,
-                              bottom: (80 + MediaQuery.of(context).padding.bottom)),
+                              bottom: (10 + MediaQuery.of(context).padding.bottom)),
                           gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            childAspectRatio: 0.55,
+                            childAspectRatio: 0.7,
                             crossAxisSpacing: 12,
                             mainAxisSpacing: 20,
                           ),

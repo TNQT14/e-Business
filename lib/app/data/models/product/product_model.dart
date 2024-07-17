@@ -31,7 +31,7 @@ class ProductModel extends Product {
     description: json["description"] as String,
     priceTags: json["price"],
     categories: json["category_id"] as int,
-    images: ['https://media.hasaki.vn/wysiwyg/HaNguyen1/sua-rua-mat-simple-giup-da-sach-thoang-150ml-1.jpg'],
+    images: ['03fa0462-a73b-4c06-9ffa-63f189f49563_5.3.jpg'],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
   );
