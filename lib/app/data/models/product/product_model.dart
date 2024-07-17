@@ -31,7 +31,7 @@ class ProductModel extends Product {
     description: json["description"] as String,
     priceTags: json["price"],
     categories: json["category_id"] as int,
-    images: ['03fa0462-a73b-4c06-9ffa-63f189f49563_5.3.jpg'],
+    images: List<String>.from(json["product_images"].map((x) => x["image_url"] as String)),
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
   );
