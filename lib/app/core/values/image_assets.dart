@@ -31,4 +31,5 @@ abstract class ImageAssets {
   static const String kEmptyDeliveryInfo = "assets/status_image/delivery-info.png";
   static const String kInternalServerError = "assets/status_image/internal-server-error.png";
   static const String kEmptyCart = "assets/status_image/empty-cart.png";
+  static const String kOrderDelivery = "assets/status_image/order-delivery.png";
 }

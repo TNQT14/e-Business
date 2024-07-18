@@ -17,7 +17,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   Future<ProductResponseModel> getProducts(params) {
     return _getProductFromUrl(
         '$baseUrl/products?keyword=${params.keyword}&pageSize=${params.pageSize}&page=${params.limit}'
-            '&category_id=${params.categories.length == 0 ? 0: params.categories.first.id}');
+            '&category_id=${params.categories.isEmpty ? 0: params.categories.first.id}');
   }
 
   Future<ProductResponseModel> _getProductFromUrl(String url) async {
