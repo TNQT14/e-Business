@@ -14,11 +14,14 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   ProductRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<ProductResponseModel> getProducts(params) => _getProductFromUrl(
-      '$baseUrl/products?keyword=${params.keyword}&pageSize=${params.pageSize}&page=${params.limit}&categories=${jsonEncode(params.categories.map((e) => e.id).toList())}');
+  Future<ProductResponseModel> getProducts(params) {
+    return _getProductFromUrl(
+        '$baseUrl/products?keyword=${params.keyword}&pageSize=${params.pageSize}&page=${params.limit}'
+            '&category_id=${params.categories.length == 0 ? 0: params.categories.first.id}');
+  }
 
   Future<ProductResponseModel> _getProductFromUrl(String url) async {
-    print('test api 1');
+    print('test api 1 check: $url');
     dynamic response;
     try{
       response = await client.get(
@@ -31,6 +34,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
       return productResponseModelFromJson(response.body);
     }
     else {
+      print('test api 1 check: $url');
       throw ServerException();
     }
   }
