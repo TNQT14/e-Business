@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import '../routes/app_routes.dart';
+import 'cart/cart_screen.dart';
 import 'home/blocs/navbar_dart_cubit.dart';
 import 'home/ui/home_screen.dart';
 
@@ -32,9 +33,7 @@ class _MainViewState extends State<MainView> {
                     children: [
                       const HomeScreen(),
                       const CategoryScreen(),
-                      Container(
-                        color: Colors.blue,
-                      ),
+                      const CartScreen(),
                       Container(
                         color: Colors.deepOrangeAccent,
                       ),
