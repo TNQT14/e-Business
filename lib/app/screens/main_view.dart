@@ -9,6 +9,7 @@ import '../routes/app_routes.dart';
 import 'cart/cart_screen.dart';
 import 'home/blocs/navbar_dart_cubit.dart';
 import 'home/ui/home_screen.dart';
+import 'other/other_screen.dart';
 
 class MainView extends StatefulWidget {
   // const MainView({});
@@ -34,9 +35,7 @@ class _MainViewState extends State<MainView> {
                       const HomeScreen(),
                       const CategoryScreen(),
                       const CartScreen(),
-                      Container(
-                        color: Colors.deepOrangeAccent,
-                      ),
+                      const OtherScreen(),
                     ],
                   )
                 );

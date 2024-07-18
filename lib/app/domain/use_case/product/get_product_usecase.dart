@@ -30,7 +30,7 @@ class FilterProductParams {
     this.keyword = '',
     this.categories = const [],
     this.minPrice = 0,
-    this.maxPrice = 10000,
+    this.maxPrice = 10000000,
     this.limit = 0,
     this.pageSize = 10,
   });

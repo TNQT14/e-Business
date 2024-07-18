@@ -243,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InputFormButton(
                           color: Colors.black87,
                           onClick: () {
-                            // Navigator.of(context).pushNamed(AppRouter.filter);
+                            Navigator.of(context).pushNamed(AppRoutes.filter);
                           },
                         ),
                       );
@@ -314,6 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           context
                               .read<ProductBloc>()
                               .add(const GetProducts(FilterProductParams()));
+                          print("state.products.length: ${state.products.length}");
                         },
                         child: GridView.builder(
                           itemCount: state.products.length +
@@ -323,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               top: 18,
                               left: 20,
                               right: 20,
-                              bottom: (10 + MediaQuery.of(context).padding.bottom)),
+                              bottom: (100 + MediaQuery.of(context).padding.bottom)),
                           gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
