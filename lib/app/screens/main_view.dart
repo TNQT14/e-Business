@@ -1,5 +1,7 @@
 import 'package:ebusiness/app/helpers/extensions.dart';
+import 'package:ebusiness/app/screens/category/category_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
@@ -29,9 +31,7 @@ class _MainViewState extends State<MainView> {
                     controller:  context.read<NavbarCubit>().controller,
                     children: [
                       const HomeScreen(),
-                      Container(
-                        color: Colors.yellow,
-                      ),
+                      const CategoryScreen(),
                       Container(
                         color: Colors.blue,
                       ),
