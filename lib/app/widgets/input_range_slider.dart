@@ -17,7 +17,7 @@ class RangeSliderExample extends StatefulWidget {
 }
 
 class _RangeSliderExampleState extends State<RangeSliderExample> {
-  final double max = 1000000;
+  final double max = 10000000;
   final double min = 0;
   late RangeValues _currentRangeValues;
 
