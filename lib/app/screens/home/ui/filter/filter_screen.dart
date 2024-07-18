@@ -15,7 +15,7 @@ class FilterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Filter"),
+        title: const Text("Lọc"),
         actions: [
           IconButton(
             onPressed: () {
@@ -80,7 +80,7 @@ class FilterScreen extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(left: 20, top: 10),
             child: Text(
-              "Price Range",
+              "Mức giá",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class FilterScreen extends StatelessWidget {
                     .state));
                 Navigator.of(context).pop();
               },
-              titleText: 'Continue',
+              titleText: 'Tìm kiếm',
             );
           }),
         ),
