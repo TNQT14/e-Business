@@ -4,7 +4,9 @@ import '../../../domain/entities/category/category.dart';
 
 List<CategoryModel> categoryModelListFromRemoteJson(String str) =>
     List<CategoryModel>.from(
-        json.decode(str)['data'].map((x) => CategoryModel.fromJson(x)));
+        json.decode(utf8.decode(str.codeUnits)).map((x) => CategoryModel.fromJson(x)));
+
+// json.decode(utf8.decode(str.codeUnits))
 
 List<CategoryModel> categoryModelListFromLocalJson(String str) =>
     List<CategoryModel>.from(
@@ -15,30 +17,22 @@ String categoryModelListToJson(List<CategoryModel> data) =>
 
 class CategoryModel extends Category {
   const CategoryModel({
-    required String id,
-    required String name,
-    required String image,
-  }) : super(
-          id: id,
-          name: name,
-          image: image,
-        );
+    required super.id,
+    required super.name,
+  });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
-        id: json["_id"],
+        id: json["id"],
         name: json["name"],
-        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
-        "_id": id,
+        "id": id,
         "name": name,
-        "image": image,
       };
 
   factory CategoryModel.fromEntity(Category entity) => CategoryModel(
         id: entity.id,
         name: entity.name,
-        image: entity.image,
       );
 }

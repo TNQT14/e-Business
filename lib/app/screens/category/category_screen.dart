@@ -58,7 +58,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     )
                         : null,
                     border: const OutlineInputBorder(),
-                    hintText: "Search Category",
+                    hintText: "Tìm kiếm mặt hàng",
                     fillColor: Colors.grey.shade100,
                     filled: true,
                     focusedBorder: OutlineInputBorder(

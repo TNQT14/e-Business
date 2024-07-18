@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../blocs/cart/cart_bloc.dart';
+import '../../blocs/category/category_bloc.dart';
 import '../../blocs/delivery_info/delivery_info_action/delivery_info_action_cubit.dart';
 import '../../blocs/delivery_info/delivery_info_fetch/delivery_info_fetch_cubit.dart';
 import '../../blocs/order/order_add/order_add_cubit.dart';
@@ -39,6 +40,9 @@ import '../../domain/use_case/cart/add_cart_item_usecase.dart';
 import '../../domain/use_case/cart/clear_cart_usecase.dart';
 import '../../domain/use_case/cart/get_cached_cart_usecase.dart';
 import '../../domain/use_case/cart/sync_cart_usecase.dart';
+import '../../domain/use_case/category/filter_category_usecase.dart';
+import '../../domain/use_case/category/get_cached_category_usecase.dart';
+import '../../domain/use_case/category/get_remote_category_usecase.dart';
 import '../../domain/use_case/delivery_info/add_dilivey_info_usecase.dart';
 import '../../domain/use_case/delivery_info/clear_local_delivery_info_usecase.dart';
 import '../../domain/use_case/delivery_info/edit_delivery_info_usecase.dart';
@@ -85,13 +89,13 @@ Future<void> init() async {
 
   //Features - Category
   // Bloc
-  // sl.registerFactory(
-  //   () => CategoryBloc(sl(), sl(), sl()),
-  // );
+  sl.registerFactory(
+    () => CategoryBloc(sl(), sl(), sl()),
+  );
   // Use cases
-  // sl.registerLazySingleton(() => GetRemoteCategoryUseCase(sl()));
-  // sl.registerLazySingleton(() => GetCachedCategoryUseCase(sl()));
-  // sl.registerLazySingleton(() => FilterCategoryUseCase(sl()));
+  sl.registerLazySingleton(() => GetRemoteCategoryUseCase(sl()));
+  sl.registerLazySingleton(() => GetCachedCategoryUseCase(sl()));
+  sl.registerLazySingleton(() => FilterCategoryUseCase(sl()));
   // Repository
   sl.registerLazySingleton<CategoryRepository>(
     () => CategoryRepositoryImpl(

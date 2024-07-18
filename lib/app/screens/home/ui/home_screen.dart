@@ -205,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                                 : null,
                             border: const OutlineInputBorder(),
-                            hintText: "Search Product",
+                            hintText: "Tìm kiếm sản phẩm",
                             fillColor: Colors.grey.shade100,
                             filled: true,
                             focusedBorder: OutlineInputBorder(

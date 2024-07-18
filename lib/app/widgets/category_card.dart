@@ -44,15 +44,16 @@ class CategoryCard extends StatelessWidget {
                     width: double.maxFinite,
                     child: Hero(
                       tag: category!.id,
-                      child: CachedNetworkImage(
-                        imageUrl: category!.image,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Container(
-                          color: Colors.grey.shade100,
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Center(child: Icon(Icons.error)),
-                      ),
+                      child: Container(),
+                      // CachedNetworkImage(
+                      //   imageUrl: category!.image,
+                      //   fit: BoxFit.cover,
+                      //   placeholder: (context, url) => Container(
+                      //     color: Colors.grey.shade100,
+                      //   ),
+                      //   errorWidget: (context, url, error) =>
+                      //       const Center(child: Icon(Icons.error)),
+                      // ),
                     ),
                   ),
                 ),
