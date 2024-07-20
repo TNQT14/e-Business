@@ -44,7 +44,7 @@ class _CartScreenState extends State<CartScreen> {
                                 Image.asset(ImageAssets.kNoConnection),
                               if (state.failure is ServerFailure)
                                 Image.asset(ImageAssets.kInternalServerError),
-                              const Text("Cart is Empty!"),
+                              Text("Cart is Empty! ${state.cart.length}"),
                               SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.1,

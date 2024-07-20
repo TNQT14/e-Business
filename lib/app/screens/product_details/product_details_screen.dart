@@ -27,7 +27,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   void initState() {
-    _selectedPriceTag = PriceTag(id: widget.product.id.toString(),
+    _selectedPriceTag = PriceTag(id: widget.product.id,
         name: widget.product.name,
         price: widget.product.priceTags);
     super.initState();
@@ -208,12 +208,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               width: 120,
               child: InputFormButton(
                 onClick: () {
-                  context.read<CartBloc>().add(AddProduct(
-                      cartItem: CartItem(
-                          product: widget.product,
-                          priceTag: _selectedPriceTag))
-                  );
-                  // print("test");
+                 try{
+                   context.read<CartBloc>().add(AddProduct(
+                       cartItem: CartItem(
+                           product: widget.product,
+                           priceTag: _selectedPriceTag))
+                   );
+                 }catch(e){
+                   print('Error Here');
+                 }
+                  print('test ');
                   Navigator.pop(context);
                 },
                 titleText: "Add to Cart",
