@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../core/utils/strings.dart';
 import '../domain/entities/cart/cart_item.dart';
 import '../routes/app_routes.dart';
 
@@ -22,6 +23,7 @@ class CartItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('$baseUrlImage${cartItem!.product.images.first}?raw=true');
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: cartItem == null
@@ -92,7 +94,7 @@ class CartItemCard extends StatelessWidget {
                         : Padding(
                             padding: const EdgeInsets.all(24.0),
                             child: CachedNetworkImage(
-                              imageUrl: cartItem!.product.images.first,
+                              imageUrl: '$baseUrlImage${cartItem!.product.images.first}?raw=true',
                               placeholder: (context, url) => const Center(
                                   child: CircularProgressIndicator()),
                               errorWidget: (context, url, error) =>

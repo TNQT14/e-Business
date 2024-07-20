@@ -2,7 +2,7 @@ import '../../../domain/entities/product/price_tag.dart';
 
 class PriceTagModel extends PriceTag {
   PriceTagModel({
-    required String id,
+    required int id,
     required String name,
     required num price,
   }) : super(
@@ -12,13 +12,13 @@ class PriceTagModel extends PriceTag {
         );
 
   factory PriceTagModel.fromJson(Map<String, dynamic> json) => PriceTagModel(
-        id: json["_id"],
+        id: json["id"],
         name: json["name"],
         price: json["price"],
       );
 
   Map<String, dynamic> toJson() => {
-        "_id": id,
+        "id": id,
         "name": name,
         "price": price,
       };

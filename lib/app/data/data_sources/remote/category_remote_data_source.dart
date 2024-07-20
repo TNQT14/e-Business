@@ -16,7 +16,6 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
       _getCategoryFromUrl('$baseUrl/categories?page=1&limit=10');
 
   Future<List<CategoryModel>> _getCategoryFromUrl(String url) async {
-    print('test api _getCategoryFromUrl');
     String token ='eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjAyMDIyMDAyIiwidXNlcklkIjo5LCJzdWIiOiIwMjAyMjAwMiIsImV4cCI6MTcyMDM3NTYyN30.6UE4_LqLGLlzYeEh4BTAZ6bovDsukXT_lulMkwJA3sM';
     dynamic response;
     try{
@@ -29,7 +28,7 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
       );
       print('Check Response: ${(response)}');
     } catch(e){
-      print('Error: ${e.toString()}');
+      print('Error _getCategoryFromUrl: ${e.toString()}');
     }
     if (response.statusCode == 200) {
       return categoryModelListFromRemoteJson(response.body);
