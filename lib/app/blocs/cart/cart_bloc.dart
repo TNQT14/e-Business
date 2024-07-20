@@ -59,6 +59,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             (_) => emit(CartLoaded(cart: cart)),
       );
     } catch (e) {
+      print('Error Error _onAddToCart: ${e.toString()}');
       emit(CartError(cart: state.cart, failure: ExceptionFailure()));
     }
   }

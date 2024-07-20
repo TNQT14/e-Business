@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../core/error/failures.dart';
+import '../../core/utils/strings.dart';
 import '../../core/values/image_assets.dart';
 import '../../domain/entities/cart/cart_item.dart';
 import '../../routes/app_routes.dart';
@@ -84,6 +85,7 @@ class _CartScreenState extends State<CartScreen> {
                               if(state.cart.length<index){
                                 return const CartItemCard();
                               }
+                              print('$baseUrlImage${state.cart[index].product.images.first}?raw=true');
                               return CartItemCard(
                                 cartItem: state.cart[index],
                                 isSelected: selectedCartItems.any(
