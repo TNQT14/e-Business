@@ -4,7 +4,7 @@ import '../product/price_tag.dart';
 import '../product/product.dart';
 
 class CartItem extends Equatable {
-  final String? id;
+  final int? id;
   final Product product;
   final PriceTag priceTag;
 

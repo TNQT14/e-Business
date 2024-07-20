@@ -21,7 +21,7 @@ String cartItemModelToJson(List<CartItemModel> data) =>
 
 class CartItemModel extends CartItem {
   const CartItemModel({
-    String? id,
+    int? id,
     required ProductModel product,
     required PriceTagModel priceTag,
   }) : super(id: id, product: product, priceTag: priceTag);

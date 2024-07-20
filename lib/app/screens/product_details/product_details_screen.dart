@@ -211,6 +211,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                  try{
                    context.read<CartBloc>().add(AddProduct(
                        cartItem: CartItem(
+                           id: widget.product.id,
                            product: widget.product,
                            priceTag: _selectedPriceTag))
                    );
