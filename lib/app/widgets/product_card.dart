@@ -120,7 +120,7 @@ class ProductCard extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(
-                  height: 20,
+                  // height: 20,
                   child: product == null
                       ? Container(
                           width: 100,

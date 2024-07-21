@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../core/error/failures.dart';
@@ -139,11 +140,11 @@ class _CartScreenState extends State<CartScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Total (${state.cart.length} items)',
+                              'Tổng (${state.cart.length} món)',
                               style: const TextStyle(fontSize: 16),
                             ),
                             Text(
-                              '\$${state.cart.fold(0.0, (previousValue, element) => (element.priceTag.price + previousValue))}',
+                              '\đ${NumberFormat('#,###').format(state.cart.fold(0.0, (previousValue, element) => (element.priceTag.price + previousValue)))}',
                               style: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
@@ -162,7 +163,7 @@ class _CartScreenState extends State<CartScreen> {
                                 AppRoutes.orderCheckout,
                                 arguments: state.cart);
                           },
-                          titleText: 'Checkout',
+                          titleText: 'Thanh toán',
                         ),
                       ),
                     ],
