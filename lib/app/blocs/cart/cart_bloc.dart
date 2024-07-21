@@ -30,6 +30,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   void _onGetCart(GetCart event, Emitter<CartState> emit) async {
     try {
+      print('test get cart');
       emit(CartLoading(cart: state.cart));
       final result = await _getCachedCartUseCase(NoParams());
       result.fold(
