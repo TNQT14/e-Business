@@ -3,11 +3,13 @@ import 'package:ebusiness/app/core/extension/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../app/core/services/services_locator.dart' as di;
 import '../../blocs/cart/cart_bloc.dart';
 import '../../blocs/delivery_info/delivery_info_fetch/delivery_info_fetch_cubit.dart';
 import '../../blocs/order/order_add/order_add_cubit.dart';
+import '../../core/utils/strings.dart';
 import '../../domain/entities/cart/cart_item.dart';
 import '../../domain/entities/order/order_details.dart';
 import '../../domain/entities/order/order_item.dart';
@@ -28,21 +30,21 @@ class OrderCheckoutScreen extends StatelessWidget {
         listener: (context, state) {
           EasyLoading.dismiss();
           if (state is OrderAddLoading) {
-            EasyLoading.show(status: 'Loading...');
+            EasyLoading.show(status: 'Đang tải...');
           } else if (state is OrderAddSuccess) {
             context.read<NavbarCubit>().update(0);
             context.read<NavbarCubit>().controller.jumpToPage(0);
             context.read<CartBloc>().add(const ClearCart());
             Navigator.of(context).pop();
-            EasyLoading.showSuccess("Order Placed Successfully");
+            EasyLoading.showSuccess("Đặt hàng thành công");
           } else if (state is OrderAddFail) {
-            EasyLoading.showError("Error");
+            EasyLoading.showError("Lỗi");
           }
         },
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
-            title: const Text('Order Checkout'),
+            title: const Text('Thanh toán đơn hàng'),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -57,7 +59,7 @@ class OrderCheckoutScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: OutlineLabelCard(
-                        title: 'Delivery Details',
+                        title: 'Chi tiết giao hàng',
                         child: BlocBuilder<DeliveryInfoFetchCubit,
                             DeliveryInfoFetchState>(
                           builder: (context, state) {
@@ -92,7 +94,7 @@ class OrderCheckoutScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     top: 20, bottom: 8, left: 4),
                                 child: const Text(
-                                  "Please select delivery information",
+                                  "Vui lòng chọn thông tin giao hàng",
                                 ),
                               );
                             }
@@ -120,7 +122,7 @@ class OrderCheckoutScreen extends StatelessWidget {
                   height: 16,
                 ),
                 OutlineLabelCard(
-                  title: 'Selected Products',
+                  title: 'Sản phẩm được chọn',
                   child: Padding(
                     padding: const EdgeInsets.only(top: 18, bottom: 8),
                     child: Column(
@@ -140,8 +142,7 @@ class OrderCheckoutScreen extends StatelessWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: CachedNetworkImage(
-                                                imageUrl: product
-                                                    .product.images.first,
+                                                imageUrl: '$baseUrlImage${product.product.images.first}?raw=true',
                                               ),
                                             )),
                                       ),
@@ -164,7 +165,7 @@ class OrderCheckoutScreen extends StatelessWidget {
                                             height: 4,
                                           ),
                                           Text(
-                                              '\$${product.priceTag}')
+                                              '\đ${NumberFormat('#,###').format(product.priceTag.price)}')
                                         ],
                                       ),
                                     )
@@ -179,7 +180,7 @@ class OrderCheckoutScreen extends StatelessWidget {
                   height: 16,
                 ),
                 OutlineLabelCard(
-                  title: 'Order Summery',
+                  title: 'Tổng kết đơn hàng',
                   child: Container(
                     height: 120,
                     padding: const EdgeInsets.symmetric(vertical: 8),
@@ -189,28 +190,28 @@ class OrderCheckoutScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text("Total Number of Items"),
+                            const Text("Tổng số lượng"),
                             Text("x${items.length}")
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text("Total Price"),
+                            const Text("Tổng giá"),
                             Text(
-                                "\$${items.fold(0.0, (previousValue, element) => (element.priceTag.price + previousValue))}")
+                                "\đ${NumberFormat('#,###').format(items.fold(0.0, (previousValue, element) => (element.priceTag.price + previousValue)))}")
                           ],
                         ),
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text("Delivery Charge"), Text("\$4.99")],
+                          children: [Text("Phí vận chuyển"), Text("Miễn phí")],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text("Total"),
+                            const Text("Tổng"),
                             Text(
-                                "\$${(items.fold(0.0, (previousValue, element) => (element.priceTag.price + previousValue)) + 4.99)}")
+                                "\đ${NumberFormat('#,###').format((items.fold(0.0, (previousValue, element) => (element.priceTag.price + previousValue))))}")
                           ],
                         )
                       ],
@@ -232,7 +233,7 @@ class OrderCheckoutScreen extends StatelessWidget {
                             .state
                             .selectedDeliveryInformation ==
                         null) {
-                      EasyLoading.showError("Error \nPlease select delivery add your delivery information");
+                      EasyLoading.showError("Lỗi \nVui lòng chọn giao hàng thêm thông tin giao hàng của bạn");
                     } else {
                       context.read<OrderAddCubit>().addOrder(OrderDetails(
                           id: '',
@@ -252,7 +253,7 @@ class OrderCheckoutScreen extends StatelessWidget {
                           discount: 0));
                     }
                   },
-                  titleText: 'Confirm',
+                  titleText: 'Xác nhận',
                 );
               }),
             ),

@@ -191,7 +191,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Total",
+                  "Tổng",
                   style: TextStyle(color: Colors.white70, fontSize: 16),
                 ),
                 Text(
@@ -218,17 +218,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                  }catch(e){
                    print('Error Here');
                  }
-                  print('test ');
                   Navigator.pop(context);
                 },
-                titleText: "Add to Cart",
+                titleText: "Thêm vào giỏ hàng",
               ),
             ),
             const SizedBox(
               width: 6,
             ),
             SizedBox(
-              width: 90,
+              width: 100,
               child: InputFormButton(
                 onClick: () {
                   Navigator.of(context)
@@ -239,7 +238,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     )
                   ]);
                 },
-                titleText: "Buy",
+                titleText: "Mua ngay",
               ),
             ),
           ],

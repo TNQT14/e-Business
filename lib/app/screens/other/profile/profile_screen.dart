@@ -31,7 +31,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text('Profile'),
+        title: const Text('Cá nhân'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
@@ -50,14 +50,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
             InputTextFormField(
               controller: firstNameController,
-              hint: 'First Name',
+              hint: 'Tên',
             ),
             const SizedBox(
               height: 12,
             ),
             InputTextFormField(
               controller: firstNameController,
-              hint: 'Last Name',
+              hint: 'Họ',
             ),
             const SizedBox(
               height: 12,
@@ -65,7 +65,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             InputTextFormField(
               controller: email,
               enable: false,
-              hint: 'Email Address',
+              hint: 'Địa chỉ Email',
             ),
             const SizedBox(
               height: 12,
@@ -82,7 +82,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         child: InputFormButton(
           onClick: () {},
-          titleText: "Update",
+          titleText: "Chỉnh sửa",
           color: Colors.black87,
         ),
       )),
