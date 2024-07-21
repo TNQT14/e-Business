@@ -1,11 +1,15 @@
 import 'package:ebusiness/app/helpers/extensions.dart';
+import 'package:ebusiness/app/screens/category/category_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import '../routes/app_routes.dart';
+import 'cart/cart_screen.dart';
 import 'home/blocs/navbar_dart_cubit.dart';
 import 'home/ui/home_screen.dart';
+import 'other/other_screen.dart';
 
 class MainView extends StatefulWidget {
   // const MainView({});
@@ -29,15 +33,9 @@ class _MainViewState extends State<MainView> {
                     controller:  context.read<NavbarCubit>().controller,
                     children: [
                       const HomeScreen(),
-                      Container(
-                        color: Colors.yellow,
-                      ),
-                      Container(
-                        color: Colors.blue,
-                      ),
-                      Container(
-                        color: Colors.deepOrangeAccent,
-                      ),
+                      const CategoryScreen(),
+                      const CartScreen(),
+                      const OtherScreen(),
                     ],
                   )
                 );
@@ -95,7 +93,7 @@ class _MainViewState extends State<MainView> {
                               maxRadius: 4,
                             ),
                           ),
-                          label: 'Home'),
+                          label: 'Trang chủ'),
                       BottomNavigationBarItem(
                           icon: ImageIcon(
                             AssetImage("assets/navbar_icons/categories.png"),
@@ -109,7 +107,7 @@ class _MainViewState extends State<MainView> {
                               maxRadius: 4,
                             ),
                           ),
-                          label: 'Category'),
+                          label: 'Danh mục'),
                       BottomNavigationBarItem(
                           icon: ImageIcon(
                             AssetImage("assets/navbar_icons/shopping-cart.png"),
@@ -123,7 +121,7 @@ class _MainViewState extends State<MainView> {
                               maxRadius: 4,
                             ),
                           ),
-                          label: 'Cart'),
+                          label: 'Giỏ hàng'),
                       BottomNavigationBarItem(
                           icon: ImageIcon(
                             AssetImage("assets/navbar_icons/user.png"),
@@ -137,7 +135,7 @@ class _MainViewState extends State<MainView> {
                               maxRadius: 4,
                             ),
                           ),
-                          label: 'Other'),
+                          label: 'Khác'),
                       // BottomNavigationBarItem(icon: Icon(Icons.search), label: 'search')
                     ],
                   );

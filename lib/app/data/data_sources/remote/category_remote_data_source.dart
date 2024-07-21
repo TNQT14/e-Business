@@ -13,15 +13,23 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
 
   @override
   Future<List<CategoryModel>> getCategories() =>
-      _getCategoryFromUrl('$baseUrl/categories');
+      _getCategoryFromUrl('$baseUrl/categories?page=1&limit=10');
 
   Future<List<CategoryModel>> _getCategoryFromUrl(String url) async {
-    final response = await client.get(
-      Uri.parse(url),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    );
+    String token ='eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjAyMDIyMDAyIiwidXNlcklkIjo5LCJzdWIiOiIwMjAyMjAwMiIsImV4cCI6MTcyMDM3NTYyN30.6UE4_LqLGLlzYeEh4BTAZ6bovDsukXT_lulMkwJA3sM';
+    dynamic response;
+    try{
+      response = await client.get(
+        Uri.parse(url),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json',
+        },
+      );
+      print('Check Response: ${(response)}');
+    } catch(e){
+      print('Error _getCategoryFromUrl: ${e.toString()}');
+    }
     if (response.statusCode == 200) {
       return categoryModelListFromRemoteJson(response.body);
     } else {

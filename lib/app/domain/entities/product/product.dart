@@ -7,7 +7,7 @@ class Product extends Equatable {
   final int id;
   final String name;
   final String description;
-  final double priceTags;
+  final int priceTags;
   final int categories;
   final List<String> images;
   final DateTime createdAt;

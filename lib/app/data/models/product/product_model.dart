@@ -25,26 +25,36 @@ class ProductModel extends Product {
   //       updatedAt: DateTime.parse(json["updated_at"]),
   //     );
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-    id: json["id"],
-    name: json["name"] as String,
-    description: json["description"] as String,
-    priceTags: json["price"],
-    categories: json["category_id"] as int,
-    images: ['https://media.hasaki.vn/wysiwyg/HaNguyen1/sua-rua-mat-simple-giup-da-sach-thoang-150ml-1.jpg'],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-  );
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    var productImages = json["product_images"] as List?;
+    var images = <String>[];
+
+    if (productImages != null) {
+      // Ensure each element in product_images is a map and contains 'image_url'
+      images = productImages
+          .where((x) => x is Map<String, dynamic> && x.containsKey('image_url'))
+          .map((x) => x['image_url'] as String)
+          .toList();
+    }
+    return ProductModel(
+      id: json["id"],
+      name: json["name"] as String,
+      description: json["description"] as String,
+      priceTags: json["price"],
+      categories: json["category_id"] as int,
+      images: images,
+      createdAt: DateTime.parse(json["created_at"]),
+      updatedAt: DateTime.parse(json["updated_at"]),
+    );
+  }
 
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "description": description,
-        "price": List<dynamic>.from(
-            (priceTags as List<PriceTagModel>).map((x) => x.toJson())),
-        "category_id": List<dynamic>.from(
-            (categories as List<CategoryModel>).map((x) => x.toJson())),
+        "price": priceTags,
+        "category_id":  categories,
         "product_images": List<dynamic>.from(images.map((x) => x)),
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),

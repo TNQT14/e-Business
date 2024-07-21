@@ -1,7 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ebusiness/app/core/utils/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../domain/entities/product/product.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../routes/app_routes.dart';
 
 class ProductCard extends StatelessWidget {
   final Product? product;
@@ -29,8 +33,8 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (product != null) {
-          // Navigator.of(context)
-          //     .pushNamed(AppRoutes.productDetails, arguments: product);
+          Navigator.of(context)
+              .pushNamed(AppRoutes.productDetails, arguments: product);
         }
       },
       child: Column(
@@ -76,17 +80,20 @@ class ProductCard extends StatelessWidget {
                 : Hero(
                     tag: product!.id,
                     child: Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child:
-                      CachedNetworkImage(
-                        imageUrl: product!.images.first,
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey.shade100,
-                          highlightColor: Colors.white,
-                          child: Container(),
+                      padding: const EdgeInsets.all(0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16.0),
+                        child: CachedNetworkImage(
+                          imageUrl: '$baseUrlImage${product!.images.first}?raw=true',
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey.shade100,
+                            highlightColor: Colors.white,
+                            child: Container(),
+                          ),
+                          fit: BoxFit.fill,
+                          errorWidget: (context, url, error) =>
+                              const Center(child: Icon(Icons.error)),
                         ),
-                        errorWidget: (context, url, error) =>
-                            const Center(child: Icon(Icons.error)),
                       ),
                     ),
                   ),
@@ -123,7 +130,7 @@ class ProductCard extends StatelessWidget {
                           ),
                         )
                       : Text(
-                          r'₫' + product!.priceTags.toString(),
+                          r'₫ ' + NumberFormat(',###').format(product!.priceTags),
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

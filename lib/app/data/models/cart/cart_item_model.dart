@@ -21,27 +21,27 @@ String cartItemModelToJson(List<CartItemModel> data) =>
 
 class CartItemModel extends CartItem {
   const CartItemModel({
-    String? id,
+    int? id,
     required ProductModel product,
     required PriceTagModel priceTag,
   }) : super(id: id, product: product, priceTag: priceTag);
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) {
     return CartItemModel(
-      id: json["_id"],
+      id: json["id"],
       product: ProductModel.fromJson(json["product"]),
       priceTag: PriceTagModel.fromJson(json["priceTag"]),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "_id": id,
+        "id": id,
         "product": (product as ProductModel).toJson(),
         "priceTag": (priceTag as PriceTagModel).toJson(),
       };
 
   Map<String, dynamic> toBodyJson() => {
-        "_id": id,
+        "id": id,
         "product": product.id,
         "priceTag": priceTag.id,
       };
@@ -50,7 +50,7 @@ class CartItemModel extends CartItem {
     return CartItemModel(
       id: cartItem.id,
       product: cartItem.product as ProductModel,
-      priceTag: cartItem.priceTag as PriceTagModel,
+      priceTag: PriceTagModel(id: cartItem.priceTag.id, name: cartItem.priceTag.name, price: cartItem.priceTag.price),
     );
   }
 }

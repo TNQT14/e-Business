@@ -130,12 +130,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 8,
                         ),
                         Text(
-                          "Welcome,",
+                          "EUPHORIA,",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 36),
                         ),
                         Text(
-                          "E-Shop mobile store",
+                          "Xin chào quý khách",
                           style: TextStyle(
                               fontWeight: FontWeight.normal, fontSize: 22),
                         ),
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushNamed(AppRoutes.loginScreen);
+                        // Navigator.of(context).pushNamed(AppRoutes.loginScreen);
                       },
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -205,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                                 : null,
                             border: const OutlineInputBorder(),
-                            hintText: "Search Product",
+                            hintText: "Tìm kiếm sản phẩm",
                             fillColor: Colors.grey.shade100,
                             filled: true,
                             focusedBorder: OutlineInputBorder(
@@ -243,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InputFormButton(
                           color: Colors.black87,
                           onClick: () {
-                            // Navigator.of(context).pushNamed(AppRouter.filter);
+                            Navigator.of(context).pushNamed(AppRoutes.filter);
                           },
                         ),
                       );
@@ -314,6 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           context
                               .read<ProductBloc>()
                               .add(const GetProducts(FilterProductParams()));
+                          print("state.products.length: ${state.products.length}");
                         },
                         child: GridView.builder(
                           itemCount: state.products.length +
@@ -323,11 +324,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               top: 18,
                               left: 20,
                               right: 20,
-                              bottom: (80 + MediaQuery.of(context).padding.bottom)),
+                              bottom: (100 + MediaQuery.of(context).padding.bottom)),
                           gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            childAspectRatio: 0.55,
+                            childAspectRatio: 0.7,
                             crossAxisSpacing: 12,
                             mainAxisSpacing: 20,
                           ),

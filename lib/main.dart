@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'app/blocs/cart/cart_bloc.dart';
+import 'app/blocs/category/category_bloc.dart';
+import 'app/blocs/delivery_info/delivery_info_action/delivery_info_action_cubit.dart';
+import 'app/blocs/delivery_info/delivery_info_fetch/delivery_info_fetch_cubit.dart';
 import 'app/blocs/filter/filter_cubit.dart';
+import 'app/blocs/order/order_fetch/order_fetch_cubit.dart';
 import 'app/blocs/product/product_bloc.dart';
 import 'app/blocs/user/user_bloc.dart';
 import 'app/domain/use_case/product/get_product_usecase.dart';
@@ -72,12 +77,30 @@ class MyApp extends StatelessWidget {
           create: (context) => di.sl<ProductBloc>()
             ..add(const GetProducts(FilterProductParams())),
         ),
+
         BlocProvider(
-          create: (context) => di.sl<UserBloc>()..add(CheckUser()),
+          create: (context) =>
+          di.sl<CategoryBloc>()..add(const GetCategories()),
+        ),
+
+        BlocProvider(
+          create: (context) => di.sl<CartBloc>()..add(const GetCart()),
         ),
         BlocProvider(
           create: (context) => di.sl<UserBloc>()..add(CheckUser()),
         ),
+
+        BlocProvider(
+          create: (context) => di.sl<DeliveryInfoActionCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<DeliveryInfoFetchCubit>()..fetchDeliveryInfo(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<OrderFetchCubit>()..getOrders(),
+        ),
+
+
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),

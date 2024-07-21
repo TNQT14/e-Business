@@ -28,4 +28,8 @@ abstract class ImageAssets {
   static const String kEmpty = "assets/status_image/empty.png";
   static const String kNoConnection = "assets/status_image/no-connection.png";
   static const String kFilterIcon = "assets/icons/filter.png";
+  static const String kEmptyDeliveryInfo = "assets/status_image/delivery-info.png";
+  static const String kInternalServerError = "assets/status_image/internal-server-error.png";
+  static const String kEmptyCart = "assets/status_image/empty-cart.png";
+  static const String kOrderDelivery = "assets/status_image/order-delivery.png";
 }
