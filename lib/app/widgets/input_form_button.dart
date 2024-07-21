@@ -25,14 +25,14 @@ class InputFormButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onClick,
       style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsets>(padding),
+        padding: WidgetStateProperty.all<EdgeInsets>(padding),
         maximumSize:
-            MaterialStateProperty.all<Size>(const Size(double.maxFinite, 50)),
+            WidgetStateProperty.all<Size>(const Size(double.maxFinite, 50)),
         minimumSize:
-            MaterialStateProperty.all<Size>(const Size(double.maxFinite, 50)),
-        backgroundColor: MaterialStateProperty.all<Color>(
+            WidgetStateProperty.all<Size>(const Size(double.maxFinite, 50)),
+        backgroundColor: WidgetStateProperty.all<Color>(
             color ?? Theme.of(context).primaryColor),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(cornerRadius ?? 12.0)),
         ),
@@ -40,6 +40,7 @@ class InputFormButton extends StatelessWidget {
       child: titleText != null
           ? Text(
               titleText!,
+              textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.white),
             )
           : Image.asset(

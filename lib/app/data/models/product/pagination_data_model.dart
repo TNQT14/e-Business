@@ -5,7 +5,7 @@ class PaginationMetaDataModel extends PaginationMetaData {
     required super.totalPages,
   });
 
-  factory PaginationMetaDataModel.fromJson(Map<String, dynamic> json) => PaginationMetaDataModel(
+  factory PaginationMetaDataModel.fromJson(Map<String, dynamic> json) => PaginationMetaDataModel(//2
     totalPages: json["totalPages"],
   );
 

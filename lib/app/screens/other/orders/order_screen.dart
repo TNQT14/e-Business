@@ -12,7 +12,7 @@ class OrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Orders"),
+        title: const Text("Đơn hàng"),
       ),
       body: BlocBuilder<OrderFetchCubit, OrderFetchState>(
         builder: (context, state) {
@@ -21,7 +21,7 @@ class OrderScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(ImageAssets.kOrderDelivery),
-                const Text("Orders are Empty!"),
+                const Text("Đơn đặt hàng trống!"),
                 SizedBox(
                   height:
                   MediaQuery.of(context).size.height * 0.1,

@@ -80,7 +80,7 @@ class OtherScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Login in your account",
+                              "Đăng nhập",
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             const Text("")
@@ -107,7 +107,7 @@ class OtherScreen extends StatelessWidget {
                     Navigator.of(context).pushNamed(AppRoutes.loginScreen);
                   }
                 },
-                title: "Profile",
+                title: "Cá nhân",
               );
             },
           ),
@@ -120,7 +120,7 @@ class OtherScreen extends StatelessWidget {
                     onClick: () {
                       Navigator.of(context).pushNamed(AppRoutes.orders);
                     },
-                    title: "Orders",
+                    title: "Đơn hàng",
                   ),
                 );
               } else {
@@ -138,7 +138,7 @@ class OtherScreen extends StatelessWidget {
                       Navigator.of(context)
                           .pushNamed(AppRoutes.deliveryDetails);
                     },
-                    title: "Delivery Info",
+                    title: "Thông tin giao hàng",
                   ),
                 );
               } else {
@@ -151,21 +151,21 @@ class OtherScreen extends StatelessWidget {
             onClick: () {
               Navigator.of(context).pushNamed(AppRoutes.settings);
             },
-            title: "Settings",
+            title: "Cài đặt",
           ),
           const SizedBox(height: 6),
           OtherItemCard(
             onClick: () {
               Navigator.of(context).pushNamed(AppRoutes.notifications);
             },
-            title: "Notifications",
+            title: "Thông báo",
           ),
           const SizedBox(height: 6),
           OtherItemCard(
             onClick: () {
               Navigator.of(context).pushNamed(AppRoutes.about);
             },
-            title: "About",
+            title: "Thông tin",
           ),
           const SizedBox(height: 6),
           BlocBuilder<UserBloc, UserState>(
@@ -180,7 +180,7 @@ class OtherScreen extends StatelessWidget {
                         .clearLocalDeliveryInfo();
                     context.read<OrderFetchCubit>().clearLocalOrders();
                   },
-                  title: "Sign Out",
+                  title: "Đăng xuất",
                 );
               } else {
                 return const SizedBox();

@@ -27,18 +27,18 @@ class _DeliveryInfoScreenState extends State<DeliveryInfoScreen> {
       listener: (context, state) {
         EasyLoading.dismiss();
         if (state is DeliveryInfoActionLoading) {
-          EasyLoading.show(status: 'Loading...');
+          EasyLoading.show(status: 'Đang tải...');
         } else if (state is DeliveryInfoSelectActionSuccess) {
           context
               .read<DeliveryInfoFetchCubit>()
               .selectDeliveryInfo(state.deliveryInfo);
         } else if (state is DeliveryInfoActionFail) {
-          EasyLoading.showError("Error");
+          EasyLoading.showError("Lỗi");
         }
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Delivery Details"),
+          title: const Text("Chi tiết giao hàng"),
         ),
         body: BlocBuilder<DeliveryInfoFetchCubit, DeliveryInfoFetchState>(
           builder: (context, state) {
@@ -47,7 +47,7 @@ class _DeliveryInfoScreenState extends State<DeliveryInfoScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(ImageAssets.kEmptyDeliveryInfo),
-                  const Text("Delivery information are Empty!"),
+                  const Text("Thông tin giao hàng trống!"),
                   SizedBox(
                     height:
                     MediaQuery.of(context).size.height * 0.1,
@@ -145,21 +145,21 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
       listener: (context, state) {
         EasyLoading.dismiss();
         if (state is DeliveryInfoActionLoading) {
-          EasyLoading.show(status: 'Loading...');
+          EasyLoading.show(status: 'Đang tải...');
         } else if (state is DeliveryInfoAddActionSuccess) {
           Navigator.of(context).pop();
           context
               .read<DeliveryInfoFetchCubit>()
               .addDeliveryInfo(state.deliveryInfo);
-          EasyLoading.showSuccess("Delivery info successfully added!");
+          EasyLoading.showSuccess("Đã thêm thông tin giao hàng thành công!");
         } else if (state is DeliveryInfoEditActionSuccess) {
           Navigator.of(context).pop();
           context
               .read<DeliveryInfoFetchCubit>()
               .editDeliveryInfo(state.deliveryInfo);
-          EasyLoading.showSuccess("Delivery info successfully edited!");
+          EasyLoading.showSuccess("Thông tin giao hàng chỉnh sửa thành công!");
         } else if (state is DeliveryInfoActionFail) {
-          EasyLoading.showError("Error");
+          EasyLoading.showError("Lỗi ${state.toString()}");
         }
       },
       child: SizedBox(
@@ -177,11 +177,11 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                   ),
                   InputTextFormField(
                     controller: firstName,
-                    hint: 'First name',
+                    hint: 'Tên',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     validation: (String? val) {
                       if (val == null || val.isEmpty) {
-                        return 'This field can\'t be empty';
+                        return 'Trường này không được để trống';
                       }
                       return null;
                     },
@@ -191,11 +191,11 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                   ),
                   InputTextFormField(
                     controller: lastName,
-                    hint: 'Last name',
+                    hint: 'Họ',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     validation: (String? val) {
                       if (val == null || val.isEmpty) {
-                        return 'This field can\'t be empty';
+                        return 'Trường này không được để trống';
                       }
                       return null;
                     },
@@ -205,11 +205,11 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                   ),
                   InputTextFormField(
                     controller: addressLineOne,
-                    hint: 'Address line one',
+                    hint: 'Số nhà',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     validation: (String? val) {
                       if (val == null || val.isEmpty) {
-                        return 'This field can\'t be empty';
+                        return 'Trường này không được để trống';
                       }
                       return null;
                     },
@@ -219,11 +219,11 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                   ),
                   InputTextFormField(
                     controller: addressLineTwo,
-                    hint: 'Address line two',
+                    hint: 'Phường',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     validation: (String? val) {
                       if (val == null || val.isEmpty) {
-                        return 'This field can\'t be empty';
+                        return 'Trường này không được để trống';
                       }
                       return null;
                     },
@@ -233,11 +233,11 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                   ),
                   InputTextFormField(
                     controller: city,
-                    hint: 'City',
+                    hint: 'Thành phố',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     validation: (String? val) {
                       if (val == null || val.isEmpty) {
-                        return 'This field can\'t be empty';
+                        return 'Trường này không được để trống';
                       }
                       return null;
                     },
@@ -247,11 +247,11 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                   ),
                   InputTextFormField(
                     controller: zipCode,
-                    hint: 'Zip code',
+                    hint: 'Tỉnh',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     validation: (String? val) {
                       if (val == null || val.isEmpty) {
-                        return 'This field can\'t be empty';
+                        return 'Trường này không được để trống';
                       }
                       return null;
                     },
@@ -261,11 +261,11 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                   ),
                   InputTextFormField(
                     controller: contactNumber,
-                    hint: 'Contact number',
+                    hint: 'Số điện thoại',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     validation: (String? val) {
                       if (val == null || val.isEmpty) {
-                        return 'This field can\'t be empty';
+                        return 'Trường này không được để trống';
                       }
                       return null;
                     },
@@ -306,7 +306,7 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                         }
                       }
                     },
-                    titleText: widget.deliveryInfo == null ? 'Save' : 'Update',
+                    titleText: widget.deliveryInfo == null ? 'Lưu' : 'Cập nhật',
                   ),
                   const SizedBox(
                     height: 8,
@@ -316,7 +316,7 @@ class _DeliveryInfoFormState extends State<DeliveryInfoForm> {
                     onClick: () {
                       Navigator.of(context).pop();
                     },
-                    titleText: 'Cancel',
+                    titleText: 'Hủy',
                   ),
                 ],
               ),

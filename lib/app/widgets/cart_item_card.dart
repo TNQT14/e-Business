@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../core/utils/strings.dart';
@@ -23,7 +24,7 @@ class CartItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('$baseUrlImage${cartItem!.product.images.first}?raw=true');
+    // print('$baseUrlImage${cartItem!.product.images.first}?raw=true');
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: cartItem == null
@@ -137,7 +138,6 @@ class CartItemCard extends StatelessWidget {
                       child: Row(
                         children: [
                           SizedBox(
-                            height: 18,
                             child: cartItem == null
                                 ? Container(
                                     width: 100,
@@ -147,7 +147,7 @@ class CartItemCard extends StatelessWidget {
                                     ),
                                   )
                                 : Text(
-                                    r'$' + cartItem!.priceTag.price.toString(),
+                                    r'đ' + NumberFormat('#,###').format(cartItem!.priceTag.price),
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,

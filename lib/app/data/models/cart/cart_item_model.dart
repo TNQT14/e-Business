@@ -10,7 +10,7 @@ List<CartItemModel> cartItemModelListFromLocalJson(String str) =>
 
 List<CartItemModel> cartItemModelListFromRemoteJson(String str) =>
     List<CartItemModel>.from(
-        json.decode(str)["data"].map((x) => CartItemModel.fromJson(x)));
+        json.decode(str)["products"].map((x) => CartItemModel.fromJson(x)));
 
 List<CartItemModel> cartItemModelFromJson(String str) =>
     List<CartItemModel>.from(
