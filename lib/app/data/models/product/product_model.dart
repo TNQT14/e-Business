@@ -30,19 +30,25 @@ class ProductModel extends Product {
     var images = <String>[];
 
     if (productImages != null) {
-      // Ensure each element in product_images is a map and contains 'image_url'
       images = productImages
           .where((x) => x is Map<String, dynamic> && x.containsKey('image_url'))
           .map((x) => x['image_url'] as String)
           .toList();
     }
+
+    if(images.isEmpty){
+      print('productImages: ${productImages.toString()}');
+      images = List<String>.from(json["product_images"] );
+      print('images: ${images.toString()}');
+    }
+
     return ProductModel(
       id: json["id"],
       name: json["name"] as String,
       description: json["description"] as String,
       priceTags: json["price"],
       categories: json["category_id"] as int,
-      images: images,
+      images: images, //warning
       createdAt: DateTime.parse(json["created_at"]),
       updatedAt: DateTime.parse(json["updated_at"]),
     );
@@ -55,7 +61,7 @@ class ProductModel extends Product {
         "description": description,
         "price": priceTags,
         "category_id":  categories,
-        "product_images": List<dynamic>.from(images.map((x) => x)),
+        "product_images": List<dynamic>.from(images.map((x) => x)), // chính xác lỗi tại đây
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };

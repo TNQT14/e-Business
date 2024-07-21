@@ -21,7 +21,7 @@ class ProductResponseModel extends ProductResponse {
   factory ProductResponseModel.fromJson(Map<String, dynamic> json) => ProductResponseModel(
       meta: PaginationMetaDataModel.fromJson(json),
       data: List<ProductModel>.from(
-          json["products"].map((x) => ProductModel.fromJson(x))),
+          json["products"].map((x) => ProductModel.fromJson(x))),//3 =>ok
     );
 
 

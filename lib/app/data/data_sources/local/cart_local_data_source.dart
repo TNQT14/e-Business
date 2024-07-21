@@ -9,7 +9,7 @@ abstract class CartLocalDataSource {
   Future<bool> clearCart();
 }
 
-const cachedCart = 'CACHED_CART';
+const cachedCart = 'CACHED_CART_1.5';
 
 class CartLocalDataSourceImpl implements CartLocalDataSource {
   final SharedPreferences sharedPreferences;
@@ -23,6 +23,7 @@ class CartLocalDataSourceImpl implements CartLocalDataSource {
     );
   }
 
+  //error owrb đây
   @override
   Future<void> saveCartItem(CartItemModel cartItem) {
     final jsonString = sharedPreferences.getString(cachedCart);
@@ -33,7 +34,7 @@ class CartLocalDataSourceImpl implements CartLocalDataSource {
     if (!cart.any((element) =>
     element.product.id == cartItem.product.id &&
         element.priceTag.id == cartItem.priceTag.id)) {
-      cart.add(cartItem);
+      cart.add(cartItem); // xử lý lỗi đầu tại đay
     }
     return sharedPreferences.setString(
       cachedCart,

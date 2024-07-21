@@ -23,7 +23,7 @@ class CartItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('$baseUrlImage${cartItem!.product.images.first}?raw=true');
+    // print('$baseUrlImage${cartItem!.product.images.first}?raw=true');
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: cartItem == null

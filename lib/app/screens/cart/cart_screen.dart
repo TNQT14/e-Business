@@ -85,7 +85,13 @@ class _CartScreenState extends State<CartScreen> {
                               if(state.cart.length<index){
                                 return const CartItemCard();
                               }
-                              print('Check length: ${state.cart.first.id} - ${state.cart.first.priceTag.price}');
+                              try {
+                                print('Check length: ${state.cart[0].product
+                                    .images[0].toString()}');
+                              }
+                              catch(e){
+                                print('Lỗi $e');
+                              }
                               return CartItemCard(
                                 cartItem: state.cart[index],
                                 isSelected: selectedCartItems.any(
