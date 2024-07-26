@@ -109,19 +109,6 @@ class OtherScreen extends StatelessWidget {
                   } else {
                     Navigator.of(context).pushNamed(AppRoutes.loginScreen);
                   }
-
-                  // FirebaseAuth.instance.authStateChanges().listen(
-                  //       (user) {
-                  //     if (user == null || !user.emailVerified) {
-                  //       Navigator.of(context).pushNamed(AppRoutes.loginScreen);
-                  //     } else {
-                  //       Navigator.of(context).pushNamed(
-                  //           AppRoutes.userProfile,
-                  //         arguments: U
-                  //       );
-                  //     }
-                  //   },
-                  // );
                 },
                 title: "Thông tin cá nhân",
               );
@@ -129,6 +116,25 @@ class OtherScreen extends StatelessWidget {
               if (state is LoginSuccess) {
                 UserModel userModel = state.user;
           } },
+          ),
+          BlocConsumer<AuthCubit, AuthState>(
+            builder: (context, state) {
+              print('state $state');
+             if(state is LoginSuccess && state.user.verify_account =='false'){
+               return OtherItemCard(
+                 onClick: () {},
+                 title: "Xác thực tài khoản",
+               );
+             }
+             else{
+               return OtherItemCard(
+                 onClick: () {},
+                 title: "Tài khoản đã xác thực",
+               );
+             }
+            }, listener: (context, state) {
+            if (state is LoginSuccess) {
+            } },
           ),
           BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {

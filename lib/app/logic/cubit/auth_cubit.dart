@@ -52,7 +52,6 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         password: password,
       );
-
       await _fireStore.collection('User').doc(userCredential.user!.uid).set({
         'userID': userCredential.user!.uid,
         'email': email,
@@ -66,7 +65,9 @@ class AuthCubit extends Cubit<AuthState> {
           return UserModel.fromJson(value.data()!);
         });
 
-        print('test $userModel');
+        if(userModel.verify_account == 'false'){
+          emit(UserNotVerified());
+        }
 
         emit(UserSignIn());
         emit(LoginSuccess(userModel));

@@ -13,11 +13,13 @@ class UserModel extends User {
     required String firstName,
     required String lastName,
     required String email,
+    required String verify_account,
   }) : super(
     id: id,
     firstName: firstName,
     lastName: lastName,
     email: email,
+      verify_account: verify_account
   );
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -25,6 +27,7 @@ class UserModel extends User {
     firstName: json["firstName"],
     lastName: json["lastName"],
     email: json["email"],
+    verify_account: json["verify_account"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -32,5 +35,6 @@ class UserModel extends User {
     "firstName": firstName,
     "lastName": lastName,
     "email": email,
+    "verify_account": verify_account,
   };
 }
