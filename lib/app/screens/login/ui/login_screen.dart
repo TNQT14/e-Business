@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 riveHelper.dispose();
                 if (!context.mounted) return;
                 context.pushNamedAndRemoveUntil(
-                  AppRoutes.homeScreen,
+                  AppRoutes.mainView,
                   predicate: (route) => false,
                 );
               } else if (state is UserNotVerified) {

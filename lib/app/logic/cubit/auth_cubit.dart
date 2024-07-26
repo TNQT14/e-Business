@@ -1,8 +1,11 @@
+import 'package:ebusiness/app/data/models/user/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../domain/entities/user/user.dart';
+
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -49,9 +52,26 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         password: password,
       );
+
+      await _fireStore.collection('User').doc(userCredential.user!.uid).set({
+        'userID': userCredential.user!.uid,
+        'email': email,
+      }, SetOptions(merge: true));
+
       await userCredential.user!.sendEmailVerification();
       if (userCredential.user!.emailVerified) {
+
+        String uid = _auth.currentUser!.uid;
+        UserModel  userModel = await _fireStore.collection('User').doc(uid).get().then((value) {
+          return UserModel.fromJson(value.data()!);
+        });
+
+        print('test $userModel');
+
         emit(UserSignIn());
+        emit(LoginSuccess(userModel));
+
+
       } else {
         await _auth.signOut();
         emit(AuthError('Email not verified. Please check your email.'));

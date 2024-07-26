@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +8,8 @@ import '../../blocs/delivery_info/delivery_info_fetch/delivery_info_fetch_cubit.
 import '../../blocs/order/order_fetch/order_fetch_cubit.dart';
 import '../../blocs/user/user_bloc.dart';
 import '../../core/values/image_assets.dart';
+import '../../data/models/user/user_model.dart';
+import '../../logic/cubit/auth_cubit.dart';
 import '../../routes/app_routes.dart';
 import '../../widgets/other_item_card.dart';
 
@@ -94,11 +97,11 @@ class OtherScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 25),
-          BlocBuilder<UserBloc, UserState>(
+          BlocConsumer<AuthCubit, AuthState>(
             builder: (context, state) {
               return OtherItemCard(
                 onClick: () {
-                  if (state is UserLogged) {
+                  if (state is LoginSuccess) {
                     Navigator.of(context).pushNamed(
                       AppRoutes.userProfile,
                       arguments: state.user,
@@ -106,10 +109,26 @@ class OtherScreen extends StatelessWidget {
                   } else {
                     Navigator.of(context).pushNamed(AppRoutes.loginScreen);
                   }
+
+                  // FirebaseAuth.instance.authStateChanges().listen(
+                  //       (user) {
+                  //     if (user == null || !user.emailVerified) {
+                  //       Navigator.of(context).pushNamed(AppRoutes.loginScreen);
+                  //     } else {
+                  //       Navigator.of(context).pushNamed(
+                  //           AppRoutes.userProfile,
+                  //         arguments: U
+                  //       );
+                  //     }
+                  //   },
+                  // );
                 },
-                title: "Cá nhân",
+                title: "Thông tin cá nhân",
               );
-            },
+            }, listener: (context, state) {
+              if (state is LoginSuccess) {
+                UserModel userModel = state.user;
+          } },
           ),
           BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {
