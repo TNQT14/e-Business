@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izota_ekyc/izota_ekyc.dart';
 import 'app/blocs/cart/cart_bloc.dart';
 import 'app/blocs/category/category_bloc.dart';
 import 'app/blocs/delivery_info/delivery_info_action/delivery_info_action_cubit.dart';
@@ -23,7 +24,6 @@ import 'app/core/services/services_locator.dart' as di;
 // import 'core/services/services_locator.dart' as di;
 
 late String initialRoute;
-
 
 Future<void> preloadSVGs(List<String> paths) async {
   for (final path in paths) {
@@ -51,12 +51,36 @@ Future<void> main() async {
       if (user == null || !user.emailVerified) {
         initialRoute = AppRoutes.loginScreen;
       } else {
-        initialRoute = AppRoutes.mainView;
+        initialRoute = AppRoutes.loginScreen;
       }
     },
   );
 
+  //Your accesskey
+  await IzotaEkyc.initialize(
+    accessKey: 'acccesskey',
+    accountCode: 'accountCode',
+    baseUrl: 'BaseURL',
+  );
+
   runApp(MyApp(router: AppPages()));
+  configLoading();
+}
+
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.dark
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.green
+    ..indicatorColor = Colors.yellow
+    ..textColor = Colors.yellow
+    ..maskColor = Colors.blue.withOpacity(0.5)
+    ..userInteractions = true
+    ..dismissOnTap = false;
 }
 
 class MyApp extends StatelessWidget {

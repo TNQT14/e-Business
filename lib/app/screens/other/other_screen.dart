@@ -11,6 +11,8 @@ import '../../core/values/image_assets.dart';
 import '../../data/models/user/user_model.dart';
 import '../../logic/cubit/auth_cubit.dart';
 import '../../routes/app_routes.dart';
+import 'package:izota_ekyc/card_recognition_interface.dart';
+import '../../src/document/card_front_recognition_page.dart';
 import '../../widgets/other_item_card.dart';
 
 
@@ -26,9 +28,9 @@ class OtherScreen extends StatelessWidget {
           const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: BlocBuilder<UserBloc, UserState>(
+            child: BlocConsumer<AuthCubit, AuthState>(
               builder: (context, state) {
-                if (state is UserLogged) {
+                if (state is LoginSuccess) {
                   return GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushNamed(
@@ -93,7 +95,10 @@ class OtherScreen extends StatelessWidget {
                     ),
                   );
                 }
-              },
+              }, listener: (context, state){
+              if (state is LoginSuccess) {
+              }
+            },
             ),
           ),
           const SizedBox(height: 25),
@@ -101,7 +106,12 @@ class OtherScreen extends StatelessWidget {
             builder: (context, state) {
               return OtherItemCard(
                 onClick: () {
+                  // print('Check state.user ${state.user}');
+
                   if (state is LoginSuccess) {
+
+
+                    print('Check state.user ${state.user}');
                     Navigator.of(context).pushNamed(
                       AppRoutes.userProfile,
                       arguments: state.user,
@@ -117,20 +127,36 @@ class OtherScreen extends StatelessWidget {
                 UserModel userModel = state.user;
           } },
           ),
+          const SizedBox(height: 6),
           BlocConsumer<AuthCubit, AuthState>(
             builder: (context, state) {
               print('state $state');
              if(state is LoginSuccess && state.user.verify_account =='false'){
                return OtherItemCard(
-                 onClick: () {},
+                 onClick: () {
+                   Navigator.of(context).push(
+                     MaterialPageRoute(
+                       builder: (context) => CardFrontRecognitionPage(),
+                     ),
+                   );
+                 },
                  title: "Xác thực tài khoản",
                );
              }
+              if(state is LoginSuccess && state.user.verify_account =='true'){
+                return OtherItemCard(
+                  onClick: () {
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => CardFrontRecognitionPage(),
+                    //   ),
+                    // );
+                  },
+                  title: "Tài khoản đã được xác thực",
+                );
+              }
              else{
-               return OtherItemCard(
-                 onClick: () {},
-                 title: "Tài khoản đã xác thực",
-               );
+               return Container();
              }
             }, listener: (context, state) {
             if (state is LoginSuccess) {

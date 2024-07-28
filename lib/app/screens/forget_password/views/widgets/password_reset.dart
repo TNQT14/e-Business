@@ -61,7 +61,7 @@ class _PasswordResetState extends State<PasswordReset> {
 
   AppTextButton resetButton() {
     return AppTextButton(
-      buttonText: 'Reset',
+      buttonText: 'Đặt lại mật khẩu',
       textStyle: AppStyles.font16White600Weight,
       onPressed: () {
         if (formKey.currentState!.validate()) {

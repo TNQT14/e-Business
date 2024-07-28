@@ -38,12 +38,12 @@ class _ForgetScreenState extends State<ForgetScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Reset',
+                              'Lấy lại mật khẩu',
                               style: AppStyles.font24Blue700Weight,
                             ),
                             Gap(10.h),
                             Text(
-                              "Enter email to reset password",
+                              "Nhập mật khẩu để lấy lại",
                               style: AppStyles.font14Grey400Weight,
                             ),
                           ],

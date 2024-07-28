@@ -10,7 +10,7 @@ class PasswordValidations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildValidationRow('At least 6 characters', hasMinLength);
+    return buildValidationRow('Ít nhất 6 kí tự', hasMinLength);
   }
 
   Widget buildValidationRow(String text, bool hasValidated) {
