@@ -167,7 +167,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
         child: Align(
           alignment: Alignment.centerRight,
           child: Text(
-            'forget password?',
+            'Quên mật khẩu',
             style: AppStyles.font14Blue400Weight,
           ),
         ),
@@ -190,7 +190,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   AppTextButton loginButton(BuildContext context) {
     return AppTextButton(
-      buttonText: "Login",
+      buttonText: "Đăng nhập",
       textStyle: AppStyles.font16White600Weight,
       onPressed: () async {
         passwordFocuseNode.unfocus();
@@ -221,7 +221,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
       return Column(
         children: [
           AppTextFormField(
-            hint: 'Name',
+            hint: 'Tên',
             onChanged: (value) {
               if (value.isNotEmpty &&
                   value.length <= 13 &&
@@ -252,7 +252,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   AppTextButton passwordButton(BuildContext context) {
     return AppTextButton(
-      buttonText: "Create Password",
+      buttonText: "Tạo mật khẩu",
       textStyle: AppStyles.font16White600Weight,
       onPressed: () async {
         passwordFocuseNode.unfocus();
@@ -274,7 +274,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
       return AppTextFormField(
         focusNode: passwordConfirmationFocuseNode,
         controller: passwordConfirmationController,
-        hint: 'Password Confirmation',
+        hint: 'Xác nhận mật khẩu',
         isObscureText: isObscureText,
         suffixIcon: GestureDetector(
           onTap: () {
@@ -315,7 +315,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
     return AppTextFormField(
       focusNode: passwordFocuseNode,
       controller: passwordController,
-      hint: 'Password',
+      hint: 'Mật khẩu',
       isObscureText: isObscureText,
       suffixIcon: GestureDetector(
         onTap: () {
@@ -340,7 +340,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             value.isEmpty ||
             !AppRegex.isPasswordValid(value)) {
           riveHelper.addFailController();
-          return 'Please enter a valid password';
+          return 'Vui lòng nhập mật khẩu hợp lệ';
         }
       },
     );
@@ -356,7 +356,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   AppTextButton signUpButton(BuildContext context) {
     return AppTextButton(
-      buttonText: "Create Account",
+      buttonText: "Tạo tài khoản",
       textStyle: AppStyles.font16White600Weight,
       onPressed: () async {
         passwordFocuseNode.unfocus();

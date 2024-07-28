@@ -38,12 +38,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Create Account',
+                  'Tạo tài khoản',
                   style: AppStyles.font24Blue700Weight,
                 ),
                 Gap(8.h),
                 Text(
-                  'Sign up now and start exploring all that our\napp has to offer. We\'re excited to welcome\nyou to our community!',
+                  'Đăng ký ngay bây giờ và bắt đầu khám phá tất cả những gì ứng dụng của chúng tôi cung cấp. \nChúng tôi rất vui mừng được chào đón bạn đến với cộng đồng của chúng tôi!',
                   style: AppStyles.font14Grey400Weight,
                 ),
                 Gap(8.h),
@@ -71,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       riveHelper.dispose();
                       if (!context.mounted) return;
                       context.pushNamedAndRemoveUntil(
-                        AppRoutes.homeScreen,
+                        AppRoutes.mainView,
                         predicate: (route) => false,
                       );
                     } else if (state is IsNewUser) {

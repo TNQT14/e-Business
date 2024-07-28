@@ -12,20 +12,20 @@ class TermsAndConditionsText extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'By logging, you agree to our',
+            text: 'Bằng cách đăng nhập, bạn đồng ý với chúng tôi',
             style: AppStyles.font11MediumLightShadeOfGray400Weight,
           ),
           TextSpan(
-            text: ' Terms & Conditions',
+            text: ' Điều khoản và điều kiện',
             style: AppStyles.font11DarkBlue500Weight,
           ),
           TextSpan(
-            text: ' and',
+            text: ' và',
             style: AppStyles.font11MediumLightShadeOfGray400Weight
                 .copyWith(height: 4.h),
           ),
           TextSpan(
-            text: ' PrivacyPolicy.',
+            text: ' Chính sách bảo mật.',
             style: AppStyles.font11DarkBlue500Weight,
           ),
         ],

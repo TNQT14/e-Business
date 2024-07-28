@@ -1,8 +1,11 @@
+import 'package:ebusiness/app/data/models/user/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../domain/entities/user/user.dart';
+
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -49,9 +52,30 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         password: password,
       );
+      await _fireStore.collection('User').doc(userCredential.user!.uid).set({
+        'userID': userCredential.user!.uid,
+        'email': email,
+      }, SetOptions(merge: true));
+
       await userCredential.user!.sendEmailVerification();
       if (userCredential.user!.emailVerified) {
+
+        String uid = _auth.currentUser!.uid;
+        UserModel  userModel = await _fireStore.collection('User').doc(uid).get().then((value) {
+          print('check value.data! ${value.data()}');
+          print('check value.data! ${UserModel.fromJson(value.data()!)}');
+
+          return UserModel.fromJson(value.data()!);
+        });
+
+        if(userModel.verify_account == 'false'){
+          emit(UserNotVerified());
+        }
+
         emit(UserSignIn());
+        emit(LoginSuccess(userModel));
+
+
       } else {
         await _auth.signOut();
         emit(AuthError('Email not verified. Please check your email.'));
@@ -101,6 +125,46 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     await _auth.signOut();
     emit(UserSignedOut());
+  }
+
+  Future<void> updateInfo(
+      String citizenPid,
+      String fullName,
+      String birthDate,
+      String gender,
+      String nationality,
+      String ethnic,
+      String religion,
+      String homeTown,
+      String regPlaceAddress,
+      String identifyCharacteristics,
+      String dateProvide,
+      String outOfDate,
+      String photoBase64,
+      ) async{
+    try{
+      String uid = _auth.currentUser!.uid;
+
+      await _fireStore.collection('User').doc(uid).update(
+        {
+           "citizenPid" :citizenPid ,
+           "fullName": fullName,
+           "birthDate": birthDate,
+           "gender": gender,
+           "nationality": nationality,
+           "ethnic": ethnic,
+           "religion":religion,
+           "homeTown": homeTown,
+           "regPlaceAddress": regPlaceAddress,
+           "identifyCharacteristics": identifyCharacteristics,
+           "dateProvide": dateProvide,
+           "outOfDate": outOfDate,
+           "photoBase64": photoBase64,
+        }
+      );
+    } catch (e){
+      emit(AuthError(e.toString()));
+    }
   }
 
   Future<void> signUpWithEmail(

@@ -31,6 +31,13 @@ class UserSignedOut extends AuthState {}
 
 class UserSignIn extends AuthState {}
 
+class LoginSuccess extends AuthState {
+  final UserModel user;
+  LoginSuccess(this.user);
+  @override
+  List<Object> get props => [user];
+}
+
 class UserSingupAndLinkedWithGoogle extends AuthState {}
 
 class UserSingupButNotVerified extends AuthState {}

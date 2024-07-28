@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 riveHelper.dispose();
                 if (!context.mounted) return;
                 context.pushNamedAndRemoveUntil(
-                  AppRoutes.homeScreen,
+                  AppRoutes.mainView,
                   predicate: (route) => false,
                 );
               } else if (state is UserNotVerified) {
@@ -113,12 +113,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Login',
+                          'Đăng nhập',
                           style: AppStyles.font24Blue700Weight,
                         ),
                         Gap(10.h),
                         Text(
-                          "Login To Continue Using The App",
+                          "Đăng nhập để có thể sử dụng",
                           style: AppStyles.font14Grey400Weight,
                         ),
                       ],

@@ -18,11 +18,19 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController email = TextEditingController();
 
+  final TextEditingController citizenPid = TextEditingController();
+  final TextEditingController birthDate = TextEditingController();
+  final TextEditingController homeTown = TextEditingController();
+
   @override
   void initState() {
     firstNameController.text = widget.user.firstName;
     lastNameController.text = widget.user.lastName;
     email.text = widget.user.email;
+
+    citizenPid.text = widget.user.citizenPid;
+    birthDate.text = widget.user.birthDate;
+    homeTown.text = widget.user.homeTown;
     super.initState();
   }
 
@@ -31,7 +39,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text('Cá nhân'),
+        title: const Text('Thông tin cá nhân'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
@@ -56,7 +64,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               height: 12,
             ),
             InputTextFormField(
-              controller: firstNameController,
+              controller: lastNameController,
               hint: 'Họ',
             ),
             const SizedBox(
@@ -66,6 +74,30 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               controller: email,
               enable: false,
               hint: 'Địa chỉ Email',
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            InputTextFormField(
+              controller: citizenPid,
+              enable: false,
+              hint: 'CCCD',
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            InputTextFormField(
+              controller: birthDate,
+              enable: false,
+              hint: 'Ngày sinh',
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            InputTextFormField(
+              controller: homeTown,
+              enable: false,
+              hint: 'Quê quán',
             ),
             const SizedBox(
               height: 12,

@@ -17,11 +17,11 @@ class DoNotHaveAccountText extends StatelessWidget {
         text: TextSpan(
           children: [
             TextSpan(
-              text: 'Don\'t have an account yet?',
+              text: 'Nếu bạn chưa có tài khoản?',
               style: AppStyles.font11DarkBlue400Weight,
             ),
             TextSpan(
-              text: ' Sign Up',
+              text: ' Đăng ký',
               style: AppStyles.font11Blue600Weight,
             ),
           ],

@@ -22,11 +22,11 @@ class AlreadyHaveAccountText extends StatelessWidget {
         text: TextSpan(
           children: [
             TextSpan(
-              text: 'Already have an account?',
+              text: 'Nếu bạn đã có tài khoản?',
               style: AppStyles.font11DarkBlue400Weight,
             ),
             TextSpan(
-              text: ' Login',
+              text: ' Đăng nhập',
               style: AppStyles.font11Blue600Weight,
             ),
           ],
